@@ -6,8 +6,162 @@
   <link href="src/output.css" rel="stylesheet">
 </head>
 <body>
-  <h1 class="text-3xl font-bold underline">
-    Hello, from Tailwind!
-  </h1>
+<!--
+  This example requires some changes to your config:
+  
+  ```
+  // tailwind.config.js
+  module.exports = {
+    // ...
+    plugins: [
+      // ...
+      require('@tailwindcss/forms'),
+    ],
+  }
+  ```
+-->
+<div class="relative overflow-hidden bg-white">
+    <div class="hidden lg:absolute lg:inset-0 lg:block" aria-hidden="true">
+      <svg class="absolute left-1/2 top-0 -translate-y-8 translate-x-64 transform" width="640" height="784" fill="none" viewBox="0 0 640 784">
+        <defs>
+          <pattern id="9ebea6f4-a1f5-4d96-8c4e-4c2abf658047" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+          </pattern>
+        </defs>
+        <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
+        <rect x="118" width="404" height="784" fill="url(#9ebea6f4-a1f5-4d96-8c4e-4c2abf658047)" />
+      </svg>
+    </div>
+  
+    <div class="relative pb-16 pt-6 sm:pb-24 lg:pb-32">
+      <div>
+        <nav class="relative mx-auto flex max-w-7xl items-center justify-between px-6" aria-label="Global">
+          <div class="flex flex-1 items-center">
+            <div class="flex w-full items-center justify-between md:w-auto">
+              <a href="#">
+                <span class="sr-only">Your Company</span>
+                <img class="h-12 w-auto sm:h-10" src="https://assets-global.website-files.com/661058c77412af4bcd933872/6617ec0b89d3d181c311aa32_JB%20portfolio%20logo.png" alt="">
+              </a>
+              <div class="-mr-2 flex items-center md:hidden">
+                <button type="button" class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                  <span class="absolute -inset-0.5"></span>
+                  <span class="sr-only">Open main menu</span>
+                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="hidden md:ml-10 md:block md:space-x-10">
+              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Skills</a>
+              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Process</a>
+              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Portfolio</a>
+              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Posts</a>
+              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Connect</a>
+            </div>
+          </div>
+          <div class="hidden text-right md:block">
+            <span class="inline-flex rounded-md shadow-md ring-1 ring-black ring-opacity-5">
+              <a href="#" class="inline-flex items-center rounded-md border border-transparent bg-blue-950 px-4 py-2 text-base font-medium text-white hover:bg-blue-900">View Resume</a>
+            </span>
+          </div>
+        </nav>
+  
+        <!--
+          Mobile menu, show/hide based on menu open state.
+  
+          Entering: "duration-150 ease-out"
+            From: "opacity-0 scale-95"
+            To: "opacity-100 scale-100"
+          Leaving: "duration-100 ease-in"
+            From: "opacity-100 scale-100"
+            To: "opacity-0 scale-95"
+        -->
+        <div class="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden">
+          <div class="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
+            <div class="flex items-center justify-between px-5 pt-4">
+              <div>
+                <img class="h-8 w-auto" src="https://assets-global.website-files.com/661058c77412af4bcd933872/6617ec0b89d3d181c311aa32_JB%20portfolio%20logo.png" alt="">
+              </div>
+              <div class="-mr-2">
+                <button type="button" class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                  <span class="absolute -inset-0.5"></span>
+                  <span class="sr-only">Close main menu</span>
+                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+            <div class="space-y-1 px-2 pb-3 pt-2">
+              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Skills</a>
+              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Process</a>
+              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Portfolio</a>
+              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Posts</a>
+              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Connect</a>
+            </div>
+            <a href="#" class="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-blue-950 hover:text-blue-900">View Resume</a>
+          </div>
+        </div>
+      </div>
+  
+      <main class="mx-auto mt-16 max-w-7xl px-4 px-6 sm:mt-24 lg:mt-32">
+        <div class="lg:grid lg:grid-cols-12 lg:gap-12">
+          <div class="sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:text-left">
+            <h1>
+              <span class="block text-base font-semibold text-gray-500 sm:text-lg lg:text-base xl:text-lg">Josh Bauer</span>
+              <span class="mt-1 block text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl">
+                <span class="block text-gray-900">Design & Development Swiss Army Knife. Keeping Sh*t </span> <span class="block text-blue-800">Simple.</span>
+              </span>
+            </h1>
+          </div>
+          <div class="relative mt-12 sm:mx-auto sm:max-w-lg lg:col-span-6 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:items-center">
+            <svg class="absolute left-1/2 top-0 origin-top -translate-x-1/2 -translate-y-8 scale-75 transform sm:scale-100 lg:hidden" width="640" height="784" fill="none" viewBox="0 0 640 784" aria-hidden="true">
+              <defs>
+                <pattern id="4f4f415c-a0e9-44c2-9601-6ded5a34a13e" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+                </pattern>
+              </defs>
+              <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
+              <rect x="118" width="404" height="784" fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)" />
+            </svg>
+            <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+              <button type="button" class="relative block w-full overflow-hidden rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                <span class="sr-only">Watch our video to learn more</span>
+                <img class="w-full" src="https://assets-global.website-files.com/661058c77412af4bcd933872/66155058ef79078bd5e780a6_me%20waving.gif" alt="">
+                <span class="absolute inset-0 flex h-full w-full items-center justify-center" aria-hidden="true">
+                  <svg class="h-20 w-20 text-indigo-500" fill="currentColor" viewBox="0 0 84 84">
+                    <circle opacity="0.9" cx="42" cy="42" r="42" fill="white" />
+                    <path d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z" />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <div class="relative bg-white">
+        <div class="relative h-80 overflow-hidden md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
+          <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&blend=6366F1&sat=-100&blend-mode=multiply" alt="">
+          <svg viewBox="0 0 926 676" aria-hidden="true" class="absolute -bottom-24 left-24 w-[57.875rem] transform-gpu blur-[118px]">
+            <path fill="url(#60c3c621-93e0-4a09-a0e6-4c228a0116d8)" fill-opacity=".4" d="m254.325 516.708-90.89 158.331L0 436.427l254.325 80.281 163.691-285.15c1.048 131.759 36.144 345.144 168.149 144.613C751.171 125.508 707.17-93.823 826.603 41.15c95.546 107.978 104.766 294.048 97.432 373.585L685.481 297.694l16.974 360.474-448.13-141.46Z" />
+          </svg>
+        </div>
+        <div class="relative mx-auto max-w-7xl py-24 sm:py-32 lg:px-8 lg:py-40">
+          <div class="pl-6 pr-6 md:ml-auto md:w-2/3 md:pl-16 lg:w-1/2 lg:pl-24 lg:pr-0 xl:pl-32">
+            <h2 class="text-base font-semibold leading-7 text-blue-800">Award winning support</h2>
+            <p class="mt-2 text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">We’re here to help</p>
+            <p class="mt-6 text-base leading-7 text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat quisque ut interdum tincidunt duis.</p>
+            <div class="mt-8">
+              <a href="#" class="inline-flex rounded-md bg-white/10 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Visit the help center</a>
+            </div>
+          </div>
+        </div>
+      </div>      
+  </div>  
+
+
 </body>
 </html>

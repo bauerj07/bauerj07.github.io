@@ -6,44 +6,18 @@
   <link href="src/output.css" rel="stylesheet">
 </head>
 <body>
-<!--
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
--->
-<div class="relative overflow-hidden bg-white">
-    <div class="hidden lg:absolute lg:inset-0 lg:block" aria-hidden="true">
-      <svg class="absolute left-1/2 top-0 -translate-y-8 translate-x-64 transform" width="640" height="784" fill="none" viewBox="0 0 640 784">
-        <defs>
-          <pattern id="9ebea6f4-a1f5-4d96-8c4e-4c2abf658047" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-            <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-          </pattern>
-        </defs>
-        <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
-        <rect x="118" width="404" height="784" fill="url(#9ebea6f4-a1f5-4d96-8c4e-4c2abf658047)" />
-      </svg>
-    </div>
-  
+<div class="relative overflow-hidden bg-white">  
     <div class="relative pb-16 pt-6 sm:pb-24 lg:pb-32">
       <div>
         <nav class="relative mx-auto flex max-w-7xl items-center justify-between px-6" aria-label="Global">
           <div class="flex flex-1 items-center">
-            <div class="flex w-full items-center justify-between md:w-auto">
+            <div class="flex w-full items-center justify-between md:w-auto sticky top-0">
               <a href="#">
                 <span class="sr-only">Josh Bauer Portfolio</span>
                 <img class="h-12 w-auto sm:h-10" src="https://assets-global.website-files.com/661058c77412af4bcd933872/6617ec0b89d3d181c311aa32_JB%20portfolio%20logo.png" alt="">
               </a>
               <div class="-mr-2 flex items-center md:hidden">
-                <button type="button" class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500" aria-expanded="false">
+                <button type="button" onclick="menuToggle()" class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-800" aria-expanded="false">
                   <span class="absolute -inset-0.5"></span>
                   <span class="sr-only">Open main menu</span>
                   <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
@@ -53,11 +27,11 @@
               </div>
             </div>
             <div class="hidden md:ml-10 md:block md:space-x-10">
-              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Skills</a>
-              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Process</a>
-              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Portfolio</a>
-              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Posts</a>
-              <a href="#" class="font-medium text-gray-500 hover:text-gray-900">Connect</a>
+              <a href="#Skills" class="font-medium text-gray-500 hover:text-gray-900">Skills</a>
+              <a href="#Process" class="font-medium text-gray-500 hover:text-gray-900">Process</a>
+              <a href="#Portfolio" class="font-medium text-gray-500 hover:text-gray-900">Portfolio</a>
+              <a href="#Posts" class="font-medium text-gray-500 hover:text-gray-900">Posts</a>
+              <a href="#Connect" class="font-medium text-gray-500 hover:text-gray-900">Connect</a>
             </div>
           </div>
           <div class="hidden text-right md:block">
@@ -66,41 +40,30 @@
             </span>
           </div>
         </nav>
-  
-        <!--
-          Mobile menu, show/hide based on menu open state.
-  
-          Entering: "duration-150 ease-out"
-            From: "opacity-0 scale-95"
-            To: "opacity-100 scale-100"
-          Leaving: "duration-100 ease-in"
-            From: "opacity-100 scale-100"
-            To: "opacity-0 scale-95"
-        -->
         <div class="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition md:hidden">
-          <div class="overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
+          <div id="mobileLinks" class="hidden overflow-hidden rounded-lg bg-white shadow-md ring-1 ring-black ring-opacity-5">
             <div class="flex items-center justify-between px-5 pt-4">
               <div>
                 <img class="h-8 w-auto" src="https://assets-global.website-files.com/661058c77412af4bcd933872/6617ec0b89d3d181c311aa32_JB%20portfolio%20logo.png" alt="">
               </div>
               <div class="-mr-2">
-                <button type="button" class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+                <a href="javascript:void(0);" onclick="menuToggle()" class="relative inline-flex items-center justify-center rounded-md bg-white p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
                   <span class="absolute -inset-0.5"></span>
                   <span class="sr-only">Close main menu</span>
                   <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
-                </button>
+                </a>
               </div>
             </div>
             <div class="space-y-1 px-2 pb-3 pt-2">
-              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Skills</a>
-              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Process</a>
-              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Portfolio</a>
-              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Posts</a>
-              <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Connect</a>
+              <a href="#Skills" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Skills</a>
+              <a href="#Process" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Process</a>
+              <a href="#Portfolio" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Portfolio</a>
+              <a href="#Posts" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Posts</a>
+              <a href="#Connect" class="block rounded-md px-3 py-2 text-base font-medium text-gray-700 hover:bg-gray-50 hover:text-gray-900">Connect</a>
             </div>
-            <a href="#" class="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-blue-950 hover:text-blue-900">View Resume</a>
+            <a href="#" target="_blank" class="block w-full bg-gray-50 px-5 py-3 text-center font-medium text-blue-950 hover:text-blue-900">View Resume</a>
           </div>
         </div>
       </div>
@@ -110,36 +73,21 @@
           <div class="sm:text-center md:mx-auto md:max-w-2xl lg:col-span-6 lg:text-left">
             <h1>
               <span class="block text-base font-semibold text-gray-500 sm:text-lg lg:text-base xl:text-lg">Josh Bauer</span>
-              <span class="mt-1 block text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl">
-                <span class="block text-gray-900">UI/UX Designer</span> 
-                <div class="flex flex-col gap-1">
-                  <span class="block text-blue-950">Keeping</span>
-                  <span class="block text-blue-950">Sh*t</span>
-                  <span class="block text-blue-800">Simple</span>
+              <span class="mt-1 block text-3xl font-bold tracking-tight">
+                <span class="block text-blue-950">UI/UX Designer</span> 
+              </span>                
+                <div class="text-2xl gap-1 flex flex-row md:gap-4 md:text-6xl font-bold tracking-tight">
+                  <span class="block text-gray-900">Keeping.</span>
+                  <span class="block text-gray-900">Sh*t.</span>
+                  <span class="block text-blue-800">Simple.</span>
                 </div>
-              </span>
             </h1>
           </div>
           <div class="relative mt-12 sm:mx-auto sm:max-w-lg lg:col-span-6 lg:mx-0 lg:mt-0 lg:flex lg:max-w-none lg:items-center">
-            <svg class="absolute left-1/2 top-0 origin-top -translate-x-1/2 -translate-y-8 scale-75 transform sm:scale-100 lg:hidden" width="640" height="784" fill="none" viewBox="0 0 640 784" aria-hidden="true">
-              <defs>
-                <pattern id="4f4f415c-a0e9-44c2-9601-6ded5a34a13e" x="118" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                  <rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
-                </pattern>
-              </defs>
-              <rect y="72" width="640" height="640" class="text-gray-50" fill="currentColor" />
-              <rect x="118" width="404" height="784" fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)" />
-            </svg>
             <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
               <button type="button" class="relative block w-full overflow-hidden rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                 <span class="sr-only">Watch my introduction video.</span>
                 <img class="w-full" src="https://assets-global.website-files.com/661058c77412af4bcd933872/66155058ef79078bd5e780a6_me%20waving.gif" alt="">
-                <span class="absolute inset-0 flex h-full w-full items-center justify-center" aria-hidden="true">
-                  <svg class="h-20 w-20 text-indigo-500" fill="currentColor" viewBox="0 0 84 84">
-                    <circle opacity="0.9" cx="42" cy="42" r="42" fill="white" />
-                    <path d="M55.5039 40.3359L37.1094 28.0729C35.7803 27.1869 34 28.1396 34 29.737V54.263C34 55.8604 35.7803 56.8131 37.1094 55.9271L55.5038 43.6641C56.6913 42.8725 56.6913 41.1275 55.5039 40.3359Z" />
-                  </svg>
-                </span>
               </button>
             </div>
           </div>
@@ -147,26 +95,642 @@
       </main>
     </div>
 
-    <div class="relative bg-white">
-        <div class="relative h-80 overflow-hidden md:absolute md:left-0 md:h-full md:w-1/3 lg:w-1/2">
-          <img class="h-full w-full object-cover" src="https://images.unsplash.com/photo-1525130413817-d45c1d127c42?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1920&q=60&blend=6366F1&sat=-100&blend-mode=multiply" alt="">
-          <svg viewBox="0 0 926 676" aria-hidden="true" class="absolute -bottom-24 left-24 w-[57.875rem] transform-gpu blur-[118px]">
-            <path fill="url(#60c3c621-93e0-4a09-a0e6-4c228a0116d8)" fill-opacity=".4" d="m254.325 516.708-90.89 158.331L0 436.427l254.325 80.281 163.691-285.15c1.048 131.759 36.144 345.144 168.149 144.613C751.171 125.508 707.17-93.823 826.603 41.15c95.546 107.978 104.766 294.048 97.432 373.585L685.481 297.694l16.974 360.474-448.13-141.46Z" />
-          </svg>
+    <div class="bg-gray-50 py-24 sm:py-32">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:text-center">
+          <h2 class="text-base font-semibold leading-7 text-blue-800">About Josh</h2>
+          <p class="mt-2 text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">Design & Development Swiss Army Knife</p>
+          <p class="mt-6 text-lg text-left leading-8 text-gray-600">
+            With over 10 years of experience in product design and development, I am passionate about creating user-friendly and accessible solutions that address user challenges and meet business objectives. My career path has taken me from a Systems Engineer working on software and HMI screens for the Steel Industry; leading the design and development of marketing sites and a line of business application for an Environmental company, to crafting user experiences for early-stage growth companies.
+          </p>
+          <p class="mt-6 text-lg text-left leading-8 text-gray-600">
+            Three years ago, I started at Relode as their first design hire. During that time, I worked in Figma to craft an extensive component library to support brand and development efforts for a handful of apps that support different user groups. Collaborating extensively with cross-functional teams, I worked to understand user goals and improve usability while contributing to the development process. In addition, I helped bring future product ideas, nebulous in nature, to life via mockups and prototypes to help brainstorm and tighten up product roadmap features and feasibility.
+          </p>          
+          <p class="mt-6 text-lg text-left leading-8 text-gray-600">
+            Previously at AES/Clean Earth, I served as the sole designer and developer for the company's line of business application, by transitioning a desktop application to the web. This monolith application, initially built in VB.net, incorporated web, business, and data layers; and was built using HTML, CSS, JS, and SQL backend. Since its inception in 2012, I spearheaded UI design and later managed a team of developers, while actively contributing to front-end, back-end, and database development. As the company expanded through acquisitions, so did the application's reach, soon to support over 50 facilities with revenue exceeding $800 million. It continues to be used today.
+          </p>            
         </div>
-        <div class="relative mx-auto max-w-7xl py-24 sm:py-32 lg:px-8 lg:py-40">
-          <div class="pl-6 pr-6 md:ml-auto md:w-2/3 md:pl-16 lg:w-1/2 lg:pl-24 lg:pr-0 xl:pl-32">
-            <h2 class="text-base font-semibold leading-7 text-blue-800">Award winning support</h2>
-            <p class="mt-2 text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">We’re here to help</p>
-            <p class="mt-6 text-base leading-7 text-black">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Et, egestas tempus tellus etiam sed. Quam a scelerisque amet ullamcorper eu enim et fermentum, augue. Aliquet amet volutpat quisque ut interdum tincidunt duis.</p>
-            <div class="mt-8">
-              <a href="#" class="inline-flex rounded-md bg-white/10 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">Visit the help center</a>
+        <div class="mx-auto max-w-2xl lg:max-w-4xl">
+          <div class="mt-10 lg:mt-20 flex items-center justify-center gap-x-6">
+            <a href="https://calendly.com/josh-bauer-designer/15min" target="_blank" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Schedule Time to Chat</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-blue-50 py-24 sm:py-32" id="Skills">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:mx-0">
+          <h2 class="text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">My Skills</h2>
+          <p class="mt-2 text-lg leading-8 text-gray-600">Experience I bring to the team.</p>
+        </div>
+
+        <div class="mx-auto max-w-7xl px-6 lg:px-8">
+          <div class="mx-auto max-w-2xl lg:max-w-none">
+            <dl class="mt-16 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-center sm:grid-cols-2 lg:grid-cols-4">
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">5 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Figma</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">5 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Design Systems</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">14 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">HTML</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">14 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">CSS</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">12 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">JavaScript</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">12 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">.NET</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">3 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">React</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">2 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">AngularJS</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">10 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">SQL</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">8 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Photoshop</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">5 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Illustrator</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">4 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Zeroheight</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">8 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Agile</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">1 year</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Webflow</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">5 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Wordpress</dd>
+              </div>
+              <div class="flex flex-col bg-gray-400/5 p-8">
+                <dt class="text-sm font-semibold leading-6 text-gray-600">2 years</dt>
+                <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900">Posthog</dd>
+              </div>
+            </dl>
+          </div>
+        </div>
+
+        <div class="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Visual Design</span>
             </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-blue-950">
+                  <span class="absolute inset-0"></span>
+                  Clean & Simple Designs
+              </h3>
+              <p class="mt-5 text-base leading-6 text-gray-600">I always bring a simplistic approach to design. I don't believe web applications should need documentation for training purposes. Designs should be visually appealing and familiar enough to the target audience that usage comes naturally. </p>
+            </div>
+          </article>
+
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Design Process</span>
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-blue-950">
+                  <span class="absolute inset-0"></span>
+                  Define - Create - Deliver
+              </h3>
+              <p class="mt-5 text-base leading-6 text-gray-600">Research. Strategy. Ideation. Stakeholder Presentations. Engineering Hand-off. Iterate.</p>
+            </div>
+          </article>
+
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Wireframes</span>
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Prototypes</span>
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Mockups</span>
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-blue-950">
+                  <span class="absolute inset-0"></span>
+                  Figma. Figma. Figma.
+              </h3>
+              <p class="mt-5  text-base leading-6 text-gray-600">I've worked in Figma daily for the past 3-5 years to create wireframes, mockups, and prototypes. What a game-changer.</p>
+            </div>
+          </article>
+
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Developer</span>
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-blue-950">
+                  <span class="absolute inset-0"></span>
+                  HTML, CSS, JavaScript, .NET & more.
+              </h3>
+              <p class="mt-5  text-base leading-6 text-gray-600">I bring a technical background with 10+ years of hands-on experience with front-end and back-end programming languages.</p>
+            </div>
+          </article>
+
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Design Systems</span>
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-blue-950">
+                  <span class="absolute inset-0"></span>
+                  Build sustainable products with component libraries and design systems.
+              </h3>
+              <p class="mt-5  text-base leading-6 text-gray-600">I have crafted UI libraries in Figma to assist with creating mockups and prototypes in a timely fashion and also developed documentation and design system for an enterprise level application.</p>
+            </div>
+          </article>
+
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Startups</span>
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Enterprise</span>
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                  <span class="absolute inset-0"></span>
+                  Extensive Experience
+              </h3>
+              <p class="mt-5  text-base leading-6 text-gray-600">With a rich background spanning startup ventures to established enterprise firms, I bring a diverse perspective to every project. From navigating the dynamic challenges inherent in startup environments to implementing scalable solutions within enterprise settings, my experience is versatile and adaptable. This breadth of experience equips me with a deep understanding of both agility and stability, ensuring effective strategies tailored to the unique needs of any organization.</p>
+            </div>
+          </article>   
+
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Collaboration</span>
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                  <span class="absolute inset-0"></span>
+                  Cross-functional Collaboration.
+              </h3>
+              <p class="mt-5  text-base leading-6 text-gray-600">Growing up playing sports has allowed me to always be a team player. I’ve been able to successfully lead teams and work cross-functionally with C-suite members, customer service reps, dev teams, and more.</p>
+            </div>
+          </article>          
+          
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">User-Centered Design</span>            
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">Analytics</span>
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                  <span class="absolute inset-0"></span>
+                  Usability sessions + data to make informed decisions.
+              </h3>
+              <p class="mt-5  text-base leading-6 text-gray-600">In my design process, I prioritize the needs and preferences of our users. I begin by crafting wireframes and mockups, which I then share with our end users. Through usability sessions, users engage in specific tasks and offer valuable feedback, guiding us towards potential improvements. Additionally, I leverage tools such as Posthog to gather metrics and user recordings, allowing us to periodically review and refine our approach based on real user experiences.</p>
+            </div>
+          </article>     
+          
+          <article class="flex max-w-xl flex-col items-start">
+            <div class="flex items-center gap-x-4 text-xs">
+              <span class="relative z-10 rounded-full bg-blue-800 px-3 py-1.5 font-medium text-white">SaSS</span>              
+            </div>
+            <div class="group relative">
+              <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+                  <span class="absolute inset-0"></span>
+                  Product Design Mindset
+              </h3>
+              <p class="mt-5  text-base leading-6 text-gray-600">My roles at Relode and Truelearn have entrenched me in SaSS product development and provided a better understanding of how to balance company and user goals, while being an advocate for end-users.  </p>
+            </div>
+          </article>                                      
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="bg-blue-800 py-24 sm:py-32" id="Process">
+      <div class="mx-auto max-w-7xl px-6 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:mx-0">
+          <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">My Process</h2>
+          <p class="mt-2 text-lg leading-8 text-gray-300">Typical end-to-end workflow.</p>
+        </div>
+
+        <div class="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 pt-10 lg:mx-0 lg:max-w-none lg:grid-cols-3">        
+          <div class="mx-auto md:mt-16 w-full max-w-2xl lg:col-span-4 lg:mt-0 lg:max-w-none">
+            <div id="tabs-id">
+              <ul class="flex mb-0 list-none overflow-x-scroll overflow-y-hidden md:overflow-hidden pt-3 pb-4 flex-row gap-3 md:gap-6">
+                <li class="-mb-px mr-2">
+                  <a class="border-transparent border-gray-300 text-white hover:cursor-pointer hover:border-gray-300 hover:text-white whitespace-nowrap border-b-2 py-4 text-sm font-medium" onclick="changeActiveTab(event,'tab-panel-requirements')">
+                    Requirements
+                  </a>
+                </li>
+                <li class="-mb-px mr-2">
+                  <a class="border-transparent text-gray-400 hover:cursor-pointer hover:border-gray-300 hover:text-white whitespace-nowrap border-b-2 py-4 text-sm font-medium" onclick="changeActiveTab(event,'tab-panel-research')">
+                    Research
+                  </a>
+                </li>
+                <li class="-mb-px mr-2">
+                  <a class="border-transparent text-gray-400 hover:cursor-pointer hover:border-gray-300 hover:text-white whitespace-nowrap border-b-2 py-4 text-sm font-medium" onclick="changeActiveTab(event,'tab-panel-design')">
+                    Design
+                  </a>
+                </li>
+                <li class="-mb-px mr-2">
+                  <a class="border-transparent text-gray-400 hover:cursor-pointer hover:border-gray-300 hover:text-white whitespace-nowrap border-b-2 py-4 text-sm font-medium" onclick="changeActiveTab(event,'tab-panel-handoff')">
+                    Handoff
+                  </a>
+                </li>
+                <li class="-mb-px mr-2">
+                  <a class="border-transparent text-gray-400 hover:cursor-pointer hover:border-gray-300 hover:text-white whitespace-nowrap border-b-2 py-4 text-sm font-medium" onclick="changeActiveTab(event,'tab-panel-observe')">
+                    Observe
+                  </a>
+                </li>                                
+              </ul>
+
+              <div class="tab-content tab-space">
+                <!-- 'Requirements' panel, show/hide based on tab state -->
+                <div id="tab-panel-requirements" class="pt-6 block" aria-labelledby="tab-requirements" role="tabpanel" tabindex="0">
+                  <h3 class="sr-only">Requirements</h3>
+              
+                  <div class="text-white flex flex-row gap-10 p-6 rounded-md bg-white/10">
+                    <div class="w-full md:w-1/2">
+                      <h4 class="text-2xl font-bold text-white">What's the goal?</h4>
+                      <p class="pt-4">Understanding the goal of a feature request in a product requiring UI/UX design is paramount for
+                        success. By delving deep into the purpose behind each request, I ensure that every design decision is aligned
+                        with the overarching objectives of the product and the needs of its users. Through user research and analysis,
+                        I gain clarity on the desired outcomes and how the proposed feature will contribute to enhancing the user
+                        experience. This approach allows me to work closely with product stakeholders to determine the best solution.
+                      </p>
+                    </div>
+                    <div class="hidden md:block md:w-1/2">
+                      <img
+                        src="https://assets-global.website-files.com/661058c77412af4bcd933872/66141ada1b85b21cbecf7f41_goals-p-800.png" />
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- 'Research' panel, show/hide based on tab state -->
+                <div id="tab-panel-research" class="pt-6 hidden" aria-labelledby="tab-research" role="tabpanel" tabindex="0">
+                  <h3 class="sr-only">Research</h3>
+              
+                  <div class="text-white flex flex-row gap-10 p-6 rounded-md bg-white/10">
+                    <div class="w-full md:w-1/2">
+                      <h4 class="text-2xl font-bold text-white">Understand the User</h4>
+                      <p class="pt-4">With a keen focus on UI/UX design, I immerse myself in understanding user needs through surveys,
+                        interviews, and feedback sessions. This hands-on approach allows me to grasp user pain points and envision
+                        functionalities that resonate with the audience. Armed with these insights, I meticulously craft intuitive and
+                        visually captivating interfaces that seamlessly integrate into the product. Through this process, I not only
+                        meet but exceed user expectations, driving engagement and fostering long-lasting relationships with end users.
+                      </p>
+                    </div>
+                    <div class="hidden md:block md:w-1/2">
+                      <img
+                        src="https://assets-global.website-files.com/661058c77412af4bcd933872/66141987fcf7a3ad62ca1b5f_interviews-p-800.png" />
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 'Design' panel, show/hide based on tab state -->
+                <div id="tab-panel-design" class="pt-6 hidden" aria-labelledby="tab-design" role="tabpanel" tabindex="0">
+                  <h3 class="sr-only">Design</h3>
+              
+                  <div class="text-white flex flex-row gap-10 p-6 rounded-md bg-white/10">
+                    <div class="w-full md:w-1/2">
+                      <h4 class="text-2xl font-bold text-white">Wireframe. Mockups. Prototypes. Oh My.</h4>
+                      <p class="pt-4">With the knowledge gained from the requirements and research phase, I translate ideas into wireframes, outlining the basic structure and functionality of the feature. Refining these wireframes into detailed mockups, I bring the design to life with visual elements and interface components. Finally, I develop interactive prototypes, allowing stakeholders to experience the feature firsthand and provide valuable feedback. Depending on the task or feature, all of these may not be needed. I only produce what's necessary.
+                      </p>
+                    </div>
+                    <div class="hidden md:block md:w-1/2">
+                      <img
+                        src="https://assets-global.website-files.com/661058c77412af4bcd933872/66141857feaceed2b0c155bd_prototypes-p-800.png" />
+                    </div>
+                  </div>
+                </div>                
+              
+                <!-- 'Handoff' panel, show/hide based on tab state -->
+                <div id="tab-panel-handoff" class="pt-6 hidden" aria-labelledby="tab-handoff" role="tabpanel" tabindex="0">
+                  <h3 class="sr-only">Handoff</h3>
+              
+                  <div class="text-white flex flex-row gap-10 p-6 rounded-md bg-white/10">
+                    <div class="w-full md:w-1/2">
+                      <h4 class="text-2xl font-bold text-white">Pass the Baton</h4>
+                      <p class="pt-4">I work to ensure that mockups are comprehensive and clearly communicate the design vision to the
+                        development team. Through detailed annotations and specifications, I provide developers with the necessary
+                        guidance to accurately translate the design into code. This collaborative approach fosters open communication
+                        and alignment between design and development, ultimately leading to the successful implementation of the
+                        feature. By streamlining the design handoff process, I empower developers to bring the design to life while
+                        maintaining the integrity of the user experience, driving product innovation and success.</p>
+                    </div>
+                    <div class="hidden md:block md:w-1/2">
+                      <img
+                        src="https://assets-global.website-files.com/661058c77412af4bcd933872/661417ae7c6189e9d68fb42b_dev%20handoff.png" />
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- 'Observe' panel, show/hide based on tab state -->
+                <div id="tab-panel-observe" class="pt-6 hidden" aria-labelledby="tab-observe" role="tabpanel" tabindex="0">
+                  <h3 class="sr-only">Observe</h3>
+              
+                  <div class="text-white flex flex-row gap-10 p-6 rounded-md bg-white/10">
+                    <div class="w-full md:w-1/2">
+                      <h4 class="text-2xl font-bold text-white">Monitor the Metrics</h4>
+                      <p class="pt-4">By leveraging analytics tools and user feedback mechanisms, I continuously track how users
+                        interact with the interface, identifying areas for improvement and optimization. Through heatmaps, user
+                        session recordings, and more, I gain invaluable insights into user behavior, preferences, and pain points.
+                        This data-driven approach allows me to refine and enhance the user experience iteratively, ensuring that the
+                        product evolves in alignment with user needs and expectations. By staying attuned to user engagement and
+                        satisfaction metrics, I drive continuous innovation and ensure that the product remains competitive and
+                        compelling in the market.</p>
+                    </div>
+                    <div class="hidden md:block md:w-1/2">
+                      <img
+                        src="https://assets-global.website-files.com/661058c77412af4bcd933872/661416a1103d9dfbebbbd3d3_metrics-p-800.png" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>           
+            </div>       
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="bg-white" id="Portfolio">
+  <div class="mx-auto max-w-2xl px-4 py-24 sm:px-6 sm:py-32 lg:max-w-7xl lg:px-8">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="text-2xl font-bold tracking-tight text-blue-950 sm:text-4xl">My Portfolio</h2>
+      <p class="mt-4 text-lg text-gray-500">Thoughtfully crafted designs and experiences.</p>
+    </div>
+
+    <div class="mt-20 space-y-20">
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+        <div class="mt-6 col-span-6">
+          <h3 class="text-2xl font-bold text-blue-900">ChatGPT Integration
+          </h3>
+          <p class="mt-2 text-gray-600 w-3/4">Seamlessly integrate ChatGPT into the job creation and candidate submission process while allowing immediate feedback to continuously improve our AI output.</p>
+          <div class="mt-4 flex gap-x-6">
+            <a target="_blank" href="https://www.figma.com/file/PFdEn1zNwUzZsni44sOEBN/ChatGPT-Integration?type=design&node-id=968-4912&mode=design" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Explore Figma File</a>
+          </div>          
+        </div>
+        <div class="flex-auto col-span-6">
+          <div class="overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/6614084445cf82c8cf0f900b_chat%20gpt.png"  class="object-cover object-center">
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+        <div class="mt-6 col-span-6">
+          <h3 class="text-2xl font-bold text-blue-900">Relode Job Board
+          </h3>
+          <p class="mt-2 text-gray-600 w-3/4">Redesign the Relode public job search app leveraging Tailwind, Hotwire, and Stimulus introducing light and dark mode capability, while adhering to our brand guidelines.</p>
+          <div class="mt-4 flex gap-x-6">
+            <a target="_blank" href="https://app.relode.com/jobs" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">View Live Site</a>
+          </div>       
+        </div>
+        <div class="flex-auto col-span-6">
+          <div class="overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/6616e2ba391dbae410286ebe_jobs%20app%20(2).png" alt="Detail of zipper pull with tan leather and silver rivet." class="object-cover object-center">
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+        <div class="mt-6 col-span-6">
+          <h3 class="text-2xl font-bold text-blue-900">Reward Promotions
+          </h3>
+          <p class="mt-2 text-gray-600 w-3/4">Showcase promotional reward details on job postings for eligible recruiters. Ensure that it's clear there's an additional promotional amount that the user may be eligible for, on top of the initial reward payments.</p>
+          <div class="mt-4 flex gap-x-6">
+            <a target="_blank" href="https://www.figma.com/file/yZwjjKaCP4p3PG0lcq9FCm/job-promotions?type=design&node-id=0%3A1&mode=design&t=pSXigPb4e48KVHP1-1" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Explore Mockups</a>
+          </div>              
+        </div>
+        <div class="flex-auto col-span-6">
+          <div class="overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/6616e046929f3045803e0691_promotions.png"  class="object-cover object-center">
+          </div>
+        </div>
+      </div>
+      
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+        <div class="mt-6 col-span-6">
+          <h3 class="text-2xl font-bold text-blue-900">Marketing Site Redesign
+          </h3>
+          <p class="mt-2 text-gray-600 w-3/4">Work with CEO, CTO, and Marketing to adjust the Relode brand appearance to match our target audience of Enterprise Healthcare organizations to tell a better story of what Relode has to offer.</p>
+          <div class="mt-4 flex gap-x-6">
+            <a target="_blank" href="https://www.relode.com/" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Visit Relode.com</a>
+          </div>              
+        </div>
+        <div class="flex-auto col-span-6">
+          <div class="overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/6613f788c181e9f4188d7440_marketing%20site.png"  class="object-cover object-center">
+          </div>
+        </div>
+      </div>
+
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+        <div class="mt-6 col-span-6">
+          <h3 class="text-2xl font-bold text-blue-900">Design System & Documentation
+          </h3>
+          <p class="mt-2 text-gray-600 w-3/4">Build a sustainable suite of products for our design and development team.</p>
+          <div class="mt-4 flex gap-x-6">
+            <a target="_blank" href="https://zeroheight.com/97983c91c/p/00c009-adhq" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">View Design System</a>
+          </div>              
+        </div>
+        <div class="flex-auto col-span-6">
+          <div class="overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/661401e58f29c983792cfe35_documentation.png"  class="object-cover object-center">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+        <div class="mt-6 col-span-6">
+          <h3 class="text-2xl font-bold text-blue-900">OrganRaiser</h3>
+          <p class="mt-2 text-gray-600 w-3/4">‍I worked to complete a DesignLab project with an attempt to increase organ donor numbers, allow users to be ambassadors' and become an 'Organ Raiser'. By doing this, they would be able to see the impact they are having on the community with their connected organ donor registrations.</p>
+          <div class="mt-4 flex gap-x-6">
+            <a target="_blank" href="https://www.figma.com/proto/DkM0SZc4YxX4ORb8nTX2EV/Portfolio?type=design&node-id=17-23&t=3S6jxKaS8IAxoZpc-0&scaling=min-zoom&page-id=1%3A5&starting-point-node-id=1%3A6" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Explore My Design</a>
+          </div>              
+        </div>
+        <div class="flex-auto col-span-6">
+          <div class="overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/661402a24c35ddb9060b9abb_organraiser.png" alt="Detail of zipper pull with tan leather and silver rivet." class="object-cover object-center">
+          </div>
+        </div>
+      </div>  
+      
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+        <div class="mt-6 col-span-6">
+          <h3 class="text-2xl font-bold text-blue-900">TipJar
+          </h3>
+          <p class="mt-2 text-gray-600 w-3/4">Realizing I never had cash in most scenarios, I wanted to create a concept that would provide businesses with a simple way to capture tips in an electronic way. In addition, provide consumers with an easy way to tip a business from a mobile device.</p>
+          <div class="mt-4 flex gap-x-6">
+            <a target="_blank" href="https://www.figma.com/proto/DkM0SZc4YxX4ORb8nTX2EV/Portfolio?type=design&node-id=7-2499&t=3S6jxKaS8IAxoZpc-0&scaling=min-zoom&page-id=1%3A5&starting-point-node-id=1%3A6" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">See Figma Project</a>
+          </div>               
+        </div>
+        <div class="flex-auto col-span-6">
+          <div class="overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/66140453b74949759452fa38_tipjar.png"  class="object-cover object-center">
+          </div>
+        </div>
+      </div>
+
+
+      <div class="flex flex-col-reverse lg:grid lg:grid-cols-12 lg:items-center lg:gap-x-8">
+        <div class="mt-6 col-span-6">
+          <h3 class="text-2xl font-bold text-blue-900">Recruiter Dashboard</h3>
+          <p class="mt-2 text-gray-600 w-3/4">Design a dashboard for recruiter users that display relevant tasks, job details, earnings, and historical hiring statistics. In addition, integrate the use of an AI chatbot to allow for easy recommendations and quick access to information available across the platform.</p>
+          <div class="mt-4 flex gap-x-6">
+            <a target="_blank" href="https://assets-global.website-files.com/661058c77412af4bcd933872/66259a1d8d825cdab9b5a71a_Dashboard.png" class="rounded-md bg-blue-950 px-3.5 py-2.5 text-base font-semibold text-white shadow-sm hover:bg-blue-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">View Dashboard</a>
+          </div>               
+        </div>
+        <div class="flex-auto col-span-6">
+          <div class="overflow-hidden rounded-lg bg-gray-100">
+            <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/66259dedc7fd3c5c3ab082c0_dashboard%20(1).png" alt="Detail of zipper pull with tan leather and silver rivet." class="object-cover object-center">
           </div>
         </div>
       </div>      
-  </div>  
+    </div>
+  </div>
+</div>
 
+
+<div class="bg-gray-50 py-24 sm:py-32" id="Posts">
+  <div class="mx-auto max-w-7xl px-6 lg:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-blue-950 sm:text-4xl">My Posts</h2>
+      <p class="mt-2 text-lg leading-8 text-gray-600">Experiences shared with my network.</p>
+    </div>
+    <div class="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <article class="flex flex-col items-start gap-4">
+        <div class="relative w-full">
+          <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/66140f4418ebfec676b0fa7d_light-dark-sample.gif" alt="" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+          <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+        </div>
+        <div class="max-w-xl">
+          <div class="group relative">
+            <h3 class="mt-3 text-lg font-semibold leading-6 text-blue-800 group-hover:text-gray-600">
+              <a target="_blank" href="https://www.linkedin.com/posts/josh-bauer-a108aa18_figma-userinterface-userexperience-activity-7180615144958251010-BmU3?utm_source=share&utm_medium=member_desktop">
+                <span class="absolute inset-0"></span>
+                Getting Started with Figma Variables              
+              </a>
+            </h3>
+          </div>
+        </div>
+      </article>
+
+      <article class="flex flex-col items-start gap-4">
+        <div class="relative w-full">
+          <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/66141148798740a226af039a_2-p-800.png" alt="" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+          <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+        </div>
+        <div class="max-w-xl">
+          <div class="group relative">
+            <h3 class="mt-3 text-lg font-semibold leading-6 text-blue-800 group-hover:text-gray-600">
+              <a target="_blank" href="https://www.linkedin.com/posts/josh-bauer-a108aa18_figma-userinterface-userexperience-activity-7180917227615834112-55j9?utm_source=share&utm_medium=member_desktop">
+                <span class="absolute inset-0"></span>
+                Figma Variables: Designing for Light/Dark Mode
+              </a>
+            </h3>
+          </div>
+        </div>
+      </article>
+      
+      <article class="flex flex-col items-start gap-4">
+        <div class="relative w-full">
+          <img src="https://assets-global.website-files.com/661058c77412af4bcd933872/6614116265dd9cf496a53554_jobdetails-light-dark-sample.gif" alt="" class="aspect-[16/9] w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]">
+          <div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+        </div>
+        <div class="max-w-xl">
+          <div class="group relative">
+            <h3 class="mt-3 text-lg font-semibold leading-6 text-blue-800 group-hover:text-gray-600">
+              <a target="_blank" href="https://www.linkedin.com/posts/josh-bauer-a108aa18_figma-userinterface-userexperience-activity-7181681942302539777-mB9p?utm_source=share&utm_medium=member_desktop">
+                <span class="absolute inset-0"></span>
+                Figma Variables: Real Example of Scaling Designs
+              </a>
+            </h3>
+          </div>
+        </div>
+      </article>      
+
+    </div>
+  </div>
+</div>
+
+<footer class="bg-blue-950">
+  <div class="mx-auto max-w-7xl overflow-hidden px-6 py-20 sm:py-24 lg:px-8" id="Connect">
+    <div class="mx-auto max-w-2xl text-center">
+      <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Let's Connect</h2>
+      <p class="mt-2 text-lg leading-8 text-gray-300">Interested in my design and development background and what I can bring to your team?</p>
+    </div>
+
+    <div class="mt-10 flex flex-col gap-4 md:flex-row justify-center items-center ">
+      <a href="mailto:bauerj07@gmail.com?subject=Interested%20in%20Your%20Design%20Work" target="_blank" class="text-gray-400 hover:text-gray-500">
+        <button type="button" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-blue-950 shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Email Me</button>
+      </a>
+
+      <a href="https://calendly.com/josh-bauer-designer/15min" target="_blank" class="text-gray-400 hover:text-gray-500">
+        <button type="button" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-blue-950 shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Schedule a Call</button>
+      </a>
+      
+      <a href="http://www.linkedin.com/in/josh-bauer-a108aa18" target="_blank" class="text-gray-400 hover:text-gray-500">
+        <button type="button" class="rounded-md bg-white px-3.5 py-2.5 text-sm font-semibold text-blue-950 shadow-sm hover:bg-gray-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-800">Connect on LinkedIn</button>
+      </a>
+    </div>
+  </div>
+</footer>
+
+  <script type="text/javascript">
+    function menuToggle() {
+      var x = document.getElementById("mobileLinks");
+      console.log(x.classList.toString());
+      if (x.classList.contains("block")) {
+        x.classList.add("hidden");
+        x.classList.remove("block");
+      } else {
+        x.classList.add("block");
+        x.classList.remove("hidden");
+      }
+    }
+
+    function changeActiveTab(event,tabID){
+      let element = event.target;
+      while(element.nodeName !== "A"){
+        element = element.parentNode;
+      }
+      ulElement = element.parentNode.parentNode;
+      aElements = ulElement.querySelectorAll("li > a");
+      tabContents = document.getElementById("tabs-id").querySelectorAll(".tab-content > div");
+      console.log(aElements.length);
+      console.log(tabContents.length);
+      for(let i = 0 ; i < aElements.length; i++){
+        aElements[i].classList.add("text-gray-400");
+        aElements[i].classList.remove("text-white");
+        aElements[i].classList.remove("border-gray-300");
+        tabContents[i].classList.add("hidden");
+        tabContents[i].classList.remove("block");
+      }
+      element.classList.add("text-white");
+      element.classList.add("border-gray-300");
+      document.getElementById(tabID).classList.remove("hidden");
+      document.getElementById(tabID).classList.add("block");
+    }
+  </script>
 
 </body>
 </html>

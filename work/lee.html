@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lee Company, Josh Bauer</title>
+  <meta name="description" content="Lee Company is a field-service company running on Microsoft Dynamics 365. Rev3 redesigned self-scheduling, added Stripe payments and refunds, and connected technician scans to the right assets in Dynamics.">
+  <link rel="icon" href="../images/JB%2032.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..600,50;1,9..144,400..600,50&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="mark" href="../"><img src="../images/JB%2032.png" alt="" width="30" height="30">Josh Bauer</a>
+      <nav aria-label="Main">
+        <a href="../work.html" aria-current="page">Work</a>
+        <a href="https://www.linkedin.com/newsletters/simple-by-design-7282829164515082242/" class="hide-sm">Newsletter</a>
+        <a href="https://drive.google.com/file/d/1rYCA_m81w_5Ka5aTueV_GPyAQTehJPNs/view?usp=sharing">Resume</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="wrap">
+      <section class="cs-head">
+        <a class="back" href="../work.html">Back to all work</a>
+        <h1>Letting customers book and pay on their own</h1>
+        <p class="lede">Lee Company is a field-service company running on Microsoft Dynamics 365. Rev3 redesigned self-scheduling, added Stripe payments and refunds, and connected technician scans to the right assets in Dynamics.</p>
+        <dl class="cs-meta">
+          <div><dt>Client</dt><dd>Lee Company</dd></div>
+          <div><dt>My role</dt><dd>Design lead, partner</dd></div>
+          <div><dt>Team</dt><dd>Rev3 Labs</dd></div>
+          <div><dt>Status</dt><dd>Live</dd></div>
+        </dl>
+      </section>
+      <section class="cs-body">
+        <div class="pic"><img src="../images/work/self-scheduling-discovery-showcase.png" alt="Three phone screens of the Lee Company scheduling assistant showing available times and a booking confirmation" width="636" height="477"></div>
+        <div class="prose">
+<h2>The problem</h2>
+<p>The old booking flow was several steps long and didn't show availability until the end. About 80% of people dropped off before they got there. Customers couldn't cancel, reschedule or check a plan balance on their own, so dispatch and the call center triaged bookings by hand. And the whole thing lived inside a third-party widget that blocked future integration.</p>
+<div class="stat"><div><b>80%</b><span>drop-off in the old booking flow</span></div><div><b>Dynamics 365</b><span>Dataverse, Field Service, Five9</span></div><div><b>Stripe</b><span>payments and refunds in the office tools</span></div></div>
+<h2>Self-scheduling</h2>
+<p>After stakeholder interviews, data analysis and lifecycle mapping, I designed a clickable Figma prototype built around real-time availability, contextual messaging and clean handoffs to a person when needed. The UI was planned to grow into billing, service plans, technician ETA and a customer portal.</p>
+<h2>Payments</h2>
+<p>Stripe payment links in customer emails, a card payment module inside Dynamics and Power Apps, and a refund workflow for the office team.</p>
+<h2>Field service integration</h2>
+<p>Technicians struggled to identify assets on site, and photos and serial numbers often didn't link to the right Dynamics record. Rev3 built an event-driven integration that takes scan events from the field app, matches them against Dataverse assets, updates the work order automatically, and logs anything unmatched for triage.</p>
+<div class="pic"><img src="../images/work/field-services-integration-showcase.png" alt="Dynamics 365 asset records alongside the technician's mobile scanning app" width="636" height="477"></div>
+<h2>Measuring it</h2>
+<p>I wrote SQL against Lee's Field Service data to compare self-scheduled jobs with jobs booked the usual way, on both adoption and revenue, so Lee had real numbers on whether self-scheduling was paying off.</p>
+        </div>
+        <nav class="next" aria-label="More work">
+          <a href="../work.html">All work</a>
+          <a href="qujam.html">Next: Qujam</a>
+        </nav>
+      </section>
+    </div>
+  </main>
+  <footer class="foot"><div class="wrap">Josh Bauer, Pittsburgh. Partner at <a href="https://rev3labs.com">Rev3 Labs</a>.</div></footer>
+</body>
+</html>

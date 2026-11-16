@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zebre, Josh Bauer</title>
+  <meta name="description" content="Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I&#x27;m now designing their customer portal and the design-system rules behind it.">
+  <link rel="icon" href="../images/JB%2032.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..600,50;1,9..144,400..600,50&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+  <header class="site-head">
+    <div class="wrap">
+      <a class="mark" href="../"><img src="../images/JB%2032.png" alt="" width="30" height="30">Josh Bauer</a>
+      <nav aria-label="Main">
+        <a href="../work.html" aria-current="page">Work</a>
+        <a href="https://www.linkedin.com/newsletters/simple-by-design-7282829164515082242/" class="hide-sm">Newsletter</a>
+        <a href="https://drive.google.com/file/d/1rYCA_m81w_5Ka5aTueV_GPyAQTehJPNs/view?usp=sharing">Resume</a>
+        <a href="../index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="wrap">
+      <section class="cs-head">
+        <a class="back" href="../work.html">Back to all work</a>
+        <h1>A portal built on rules, not one-offs</h1>
+        <p class="lede">Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I'm now designing their customer portal and the design-system rules behind it.</p>
+        <dl class="cs-meta">
+          <div><dt>Client</dt><dd>Zebre Technologies</dd></div>
+          <div><dt>My role</dt><dd>Product designer</dd></div>
+          <div><dt>Team</dt><dd>Rev3 Labs</dd></div>
+          <div><dt>Status</dt><dd>In progress</dd></div>
+        </dl>
+      </section>
+      <section class="cs-body">
+        <div class="pic"><img src="../images/work/medical-imaging-storage-analyzer-showcase.png" alt="Zebre analytics dashboard screens showing storage totals, file counts and estimated savings" width="636" height="477"></div>
+        <div class="prose">
+<h2>The problem</h2>
+<p>Large imaging archives are mostly non-diagnostic data, up to 75% of it. That drives up storage costs, slows transfers, and makes it hard to prepare imaging for cloud migration or AI pipelines. IT leaders had no clear view of where the waste was.</p>
+<div class="stat"><div><b>75%</b><span>of archive data can be non-diagnostic</span></div><div><b>HIPAA</b><span>compliant scanner and cloud API</span></div><div><b>AA</b><span>WCAG target for the portal</span></div></div>
+<h2>The analyzer</h2>
+<p>Rev3 ran stakeholder interviews, mapped the constraints, and validated the concept with a Figma prototype before building. I designed the responsive dashboard that shows storage savings and optimization recommendations, backed by a Windows scanner and cloud API built in Angular, .NET and Azure.</p>
+<h2>The portal</h2>
+<p>Zebre's existing app had drifted: similar screens looked and behaved differently. The new customer portal is a fresh build, so I'm using it to stop that drift from carrying over.</p>
+<ul>
+<li>Design-system guidelines and rules for the new platform, written so legacy inconsistencies get caught and resolved in the rebuild instead of copied.</li>
+<li>A login for existing paying customers: a full-bleed green layout with a logomark watermark, with a centered-card version kept as a backup for the team to compare.</li>
+<li>Products that can be turned on or off per customer, so the portal fits whatever each account has.</li>
+<li>Working personas, reviewed with Zebre's CEO before being used as the design's north star.</li>
+</ul>
+<h2>Designing for healthcare</h2>
+<ul>
+<li><strong>Accessibility.</strong> The target is WCAG AA. Color blindness has come up with some of Zebre's customers, so status and meaning never rely on color alone.</li>
+<li><strong>No patient data.</strong> Designs and demo content never show protected health information: no patient names, record numbers, accession numbers or study dates.</li>
+</ul>
+<p>I also built Zebre's marketing site in Webflow and set up cookie consent so tracking only runs after a visitor agrees.</p>
+        </div>
+        <nav class="next" aria-label="More work">
+          <a href="../work.html">All work</a>
+          <a href="publishright.html">Next: PublishRight</a>
+        </nav>
+      </section>
+    </div>
+  </main>
+  <footer class="foot"><div class="wrap">Josh Bauer, Pittsburgh. Partner at <a href="https://rev3labs.com">Rev3 Labs</a>.</div></footer>
+</body>
+</html>

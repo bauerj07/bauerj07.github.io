@@ -3,139 +3,167 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Josh Bauer, Simple by design</title>
-  <meta name="description" content="Josh Bauer is a product designer in Pittsburgh. Thoughts on keeping work software simple, and the work behind them.">
+  <title>Josh Bauer, Product Designer</title>
+  <meta name="description" content="Josh Bauer is a product designer in Pittsburgh who designs the software people run their jobs on.">
+  <meta name="theme-color" content="#012169">
   <link rel="icon" href="images/JB%2032.png">
-  <link rel="apple-touch-icon" href="images/JB%20256.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..600,50;1,9..144,400..600,50&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-  <header class="site-head">
-    <div class="wrap">
-      <a class="mark" href="./"><img src="images/JB%2032.png" alt="" width="28" height="28">Josh Bauer</a>
-      <nav aria-label="Main">
-        <a href="work.html">Work</a>
-        <a href="https://www.linkedin.com/newsletters/simple-by-design-7282829164515082242/" class="hide-sm">Newsletter</a>
-        <a href="#contact">Contact</a>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="wide">
+      <a class="mark" href="./"><img src="images/JB%2032.png" alt="" width="30" height="30">Josh Bauer</a>
+      <nav class="nav" aria-label="Main">
+        <a href="#work" class="hide-sm">Work</a>
+        <a href="#opinions" class="opt">Opinions</a>
+        <a href="#faq" class="opt">FAQ</a>
+        <span class="view" role="group" aria-label="View"><a href="./" aria-current="page" title="This page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z"/><path d="M6.5 8h4M6.5 10.5h4"/></svg>Site</a><a href="canvas/" title="See this portfolio as a design file"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Canvas</a></span>
+        <a class="btn sm hide-sm" href="#hire">Say hello</a>
       </nav>
     </div>
   </header>
 
-  <main id="page">
+  <main id="main">
     <section class="hero">
-      <div class="wrap">
-        <h1>Simple, <span class="by">by design.</span></h1>
-        <p>I'm Josh, a product designer in Pittsburgh. I design the software people run their jobs on, and I've been doing it long enough to have opinions. <b>This page is a few of them.</b> The work is over <a href="work.html">here</a>.</p>
-      </div>
-    </section>
-
-    <section class="thoughts" aria-labelledby="th">
-      <div class="wrap">
-        <h2 id="th">Things I keep saying</h2>
-
-        <article class="post">
-          <div class="when">On requirements<a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></div>
-          <div class="body">
-            <p>This has come up throughout my career.</p>
-            <p>Business users describe what they need and naturally explain how they want it to work too. That becomes the requirement. The designer builds it. And then everyone wonders why the product feels off.</p>
-            <p>They know the process better than anyone. That part's invaluable. But "put the filter at the top and show 8 columns in the table" is a design decision, not a business requirement.</p>
-            <p>Their feedback matters. Just not as the final answer on how something should work.</p>
-            <p class="line">Tell us what needs to happen. Let the design and development team figure out how.</p>
+      <div class="col">
+        <h1>Software shouldn't need a <mark>training manual.</mark></h1>
+        <p class="lead">I'm Josh Bauer, a product designer in Pittsburgh. I design the software people run their jobs on, and I've been at it long enough to have opinions. This page has a few of them.</p>
+        <div class="me">
+          <div class="ctas">
+            <a class="btn yel" href="#work">See the work</a>
+            <a class="btn alt" href="#hire">Say hello</a>
           </div>
-        </article>
-
-        <article class="post">
-          <div class="when">On AI and design<a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></div>
-          <div class="body">
-            <p>AI can spit out a design that looks good in a screenshot. It can't tell you why users bail at step 3. It doesn't know your ops team pictures this flow completely differently than your customers do. It has no idea the last two versions of this exact screen already failed, or why.</p>
-            <p>It's not in the room. It doesn't know your product, your users, or how you got here.</p>
-            <p class="line">A layout isn't a design. Context is.</p>
-          </div>
-        </article>
-
-        <article class="post">
-          <div class="when">On using AI anyway<a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></div>
-          <div class="body">
-            <p>I use AI in our design work. It's useful for moving fast, generating options, exploring directions, and cutting out repetitive work. But it's not a silver bullet.</p>
-            <p>What it can't do is replace the judgment of someone who knows your users, your product, and why things are the way they are.</p>
-            <p class="line">The question isn't whether AI can make something that looks good. It's whether it's making the right thing.</p>
-          </div>
-        </article>
-
-        <article class="post">
-          <div class="when">On training manuals</div>
-          <div class="body">
-            <p>I don't think work software should need a training manual. If a screen needs a walkthrough, the screen is the problem.</p>
-            <p>That's an unpopular position with people who sell training. It's a popular one with the people who have to use the software at 7am on a Monday.</p>
-          </div>
-        </article>
-
-        <article class="post">
-          <div class="when">On internal users</div>
-          <div class="body">
-            <p>Get the experience right for your own staff first. Time is money, people stay longer, and there are fewer workarounds living in spreadsheets nobody admits to.</p>
-            <p class="line">It trickles down. The way a company treats its internal tools is the way its customers end up getting treated.</p>
-          </div>
-        </article>
-
-        <article class="post">
-          <div class="when">On rework<a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></div>
-          <div class="body">
-            <p>The product gets built. Users get hands on it. And suddenly it doesn't work the way they actually work, because the requirements were written around how someone imagined it, not how it gets used.</p>
-            <p>Rework is expensive. Not just in time and money, but in the confidence your team has in the process.</p>
-            <p class="line">Getting the requirements right the first time isn't a design problem. It's a business problem.</p>
-          </div>
-        </article>
-
-        <article class="post">
-          <div class="when">On tickets</div>
-          <div class="body">
-            <p>I write front-end code, so when a design bug shows up I'd rather fix it in the branch than write a ticket describing it. It's faster, and the engineer gets a pull request instead of a complaint.</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section>
-      <div class="wrap two">
-        <div>
-          <h2>Simple By Design</h2>
-          <p>A newsletter where I take a screen I came across, say what's bugging me about it, and redesign it. Quick explorations based on feel, instinct and patterns I've seen over the years, not deep research. Each one has the same three parts.</p>
-          <ul class="steps">
-            <li><b>The problem</b><span>What's getting in the user's way.</span></li>
-            <li><b>The process</b><span>The two or three moves that fix it.</span></li>
-            <li><b>The solution</b><span>The before and after, side by side.</span></li>
-          </ul>
-          <p style="margin-top:18px"><a href="https://www.linkedin.com/newsletters/simple-by-design-7282829164515082242/">Read it on LinkedIn</a></p>
-        </div>
-        <div>
-          <h2>How I work</h2>
-          <p>I've usually been the only designer on a product, so I'm used to starting from nothing: the component library, the patterns engineers build from, the habits that keep things consistent as a product grows.</p>
-          <ul class="steps">
-            <li><b>Start with</b><span>The people doing the work, and what actually needs to happen.</span></li>
-            <li><b>Design in</b><span>Figma and Claude Design.</span></li>
-            <li><b>Build in</b><span>React, Angular and TypeScript. Claude Code most days.</span></li>
-            <li><b>Measure with</b><span>PostHog and the database. Did it change anything?</span></li>
-          </ul>
+          <span class="note" aria-hidden="true">Looking for a senior role!<svg class="scribble" viewBox="0 0 54 40" aria-hidden="true"><path d="M50 4c-6 14-20 26-40 28"/><path d="M18 24l-9 8 11 4"/></svg></span>
         </div>
       </div>
     </section>
 
-    <section class="contact" id="contact">
-      <div class="wrap">
-        <h2>Say hello</h2>
-        <p>I'm looking for a senior product design role on complex B2B, developer or AI products. Email is fastest.</p>
-        <div class="actions">
-          <a class="btn btn-solid" href="mailto:bauerj07@gmail.com?subject=Hello%20from%20your%20site">bauerj07@gmail.com</a>
-          <a class="btn" href="https://www.linkedin.com/in/josh-bauer-a108aa18/">LinkedIn</a>
-          <a class="btn" href="work.html">See the work</a>
+    <section class="sec" id="work" aria-labelledby="work-h">
+      <div class="col">
+        <p class="kicker">The proof</p>
+        <h2 id="work-h">What changed for the people I worked with</h2>
+        <p class="intro">Four recent projects with <a href="https://rev3labs.com">Rev3 Labs</a>, the consultancy I'm a partner at. I was the designer on all of them, usually the only one. Each has a longer write-up if you want the details.</p>
+        <article class="story t1">
+          <a class="frame" href="work/lee.html" aria-label="Lee Company: read the whole story"><img loading="lazy" style="view-transition-name: i-lee" src="images/work/lee-3-schedule.png" alt="Lee Company's live scheduling screen showing the first available arrival windows, with the chosen window played back" width="340" height="396"><span class="note" aria-hidden="true">self-scheduling app</span></a>
+          <p class="who">Lee Company</p>
+          <p class="num">4.7x<span>more paid jobs a year than the old booking channel</span></p>
+          <h3 style="view-transition-name: t-lee">Turning online booking into a growth channel</h3>
+          <p>Lee Company does HVAC, plumbing, electrical and appliance repair for homeowners, all on Microsoft Dynamics 365 Field Service. I designed their customer self-scheduling experience, and paid jobs through it ran at more than four times the old booking channel.</p>
+          <a class="more" href="work/lee.html">Read the whole story</a>
+        </article>
+        <article class="story t2">
+          <a class="frame" href="work/qujam.html" aria-label="Qujam: read the whole story"><img loading="lazy" style="view-transition-name: i-qujam" src="images/work/qujam-login.jpg" alt="Qujam sign-in screen with the tagline Hyperlocal ads for all" width="800" height="600"><span class="note" aria-hidden="true">geofence ad platform</span></a>
+          <p class="who">Qujam</p>
+          <p class="num">79%<span>growth in payment volume in thirteen months</span></p>
+          <h3 style="view-transition-name: t-qujam">Growing a self-serve geofencing ad platform</h3>
+          <p>Qujam lets small businesses and agencies build location-targeted ad campaigns themselves, across display, streaming video, pre-roll and audio. Since September 2025 Rev3 has been Qujam's design and engineering team, and I lead the design. Payment volume grew 79% over the period.</p>
+          <a class="more" href="work/qujam.html">Read the whole story</a>
+        </article>
+        <article class="story t3">
+          <a class="frame" href="work/zebre.html" aria-label="Zebre Technologies: read the whole story"><img loading="lazy" style="view-transition-name: i-zebre" src="images/work/medical-imaging-storage-analyzer-showcase.png" alt="Zebre analytics dashboard screens showing storage totals, file counts and estimated savings" width="636" height="477"><span class="note" aria-hidden="true">imaging analytics portal</span></a>
+          <p class="who">Zebre Technologies</p>
+          <p class="num">75%<span>of an imaging archive can be data nobody needs</span></p>
+          <h3 style="view-transition-name: t-zebre">A portal built on rules, not one-offs</h3>
+          <p>Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I'm now designing their customer portal and the design-system rules behind it.</p>
+          <a class="more" href="work/zebre.html">Read the whole story</a>
+        </article>
+        <article class="story t4">
+          <a class="frame" href="work/publishright.html" aria-label="PublishRight: read the whole story"><img loading="lazy" style="view-transition-name: i-publishright" src="images/work/proofreading-software-showcase.png" alt="PublishRight marketing site and product screens with tracked AI edits" width="800" height="600"><span class="note" aria-hidden="true">AI proofreading app</span></a>
+          <p class="who">PublishRight</p>
+          <p class="num">20 min<span>to proofread what used to take weeks</span></p>
+          <h3 style="view-transition-name: t-publishright">An AI proofreader, from brand to product</h3>
+          <p>PublishRight is an AI proofreading platform for Christian publishers, built as a joint venture between Rev3 Labs and a publishing partner. I designed it from the ground up.</p>
+          <a class="more" href="work/publishright.html">Read the whole story</a>
+        </article>
+        <div class="earlier">
+          <h3>Before Rev3</h3>
+          <p><b>Relode, 2021 to 2024.</b> I built the Figma component library and the <a href="https://zeroheight.com/97983c91c/p/00c009-adhq">Zeroheight documentation</a> that design and engineering shared across several apps, and reviewed branches for accessibility before merge.</p>
+          <p><b>Clean Earth, 2015 to 2021.</b> Designer, developer and then application architect on the platform the company's facilities run on. I built its design system and style guide, ran releases and managed the developers. It's still in use.</p>
+          <p><b>Siemens, Truelearn and AES, 2007 to 2015.</b> Software and operator screens for the steel industry at Siemens, then web and mobile UI at Truelearn and AES Environmental.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="opinions" aria-labelledby="op-h">
+      <div class="col">
+        <p class="kicker">Opinions</p>
+        <h2 id="op-h">Things I keep saying</h2>
+        <p class="intro">Most of these started as posts on LinkedIn. I keep coming back to them.</p>
+        <div class="says">
+        <div class="say"><h3>Tell us what needs to happen. Let the design and development team figure out how.</h3><p>This has come up throughout my career.</p><p>Business users describe what they need and naturally explain how they want it to work too. That becomes the requirement. The designer builds it. And then everyone wonders why the product feels off.</p><p>They know the process better than anyone. That part's invaluable. But "put the filter at the top and show 8 columns in the table" is a design decision, not a business requirement.</p><p>Their feedback matters. Just not as the final answer on how something should work.</p><p class="src"><a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></p></div>
+        <div class="say"><h3>A layout isn't a design. Context is.</h3><p>AI can spit out a design that looks good in a screenshot. It can't tell you why users bail at step 3. It doesn't know your ops team pictures this flow completely differently than your customers do. It has no idea the last two versions of this exact screen already failed, or why.</p><p>It's not in the room. It doesn't know your product, your users, or how you got here.</p><p class="src"><a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></p></div>
+        <div class="say"><h3>The question isn't whether AI can make something that looks good. It's whether it's making the right thing.</h3><p>I use AI in our design work. It's useful for moving fast, generating options, exploring directions, and cutting out repetitive work. But it's not a silver bullet.</p><p>What it can't do is replace the judgment of someone who knows your users, your product, and why things are the way they are.</p><p class="src"><a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></p></div>
+        <div class="say"><h3>I don't think work software should need a training manual. If a screen needs a walkthrough, the screen is the problem.</h3><p>That's an unpopular position with people who sell training. It's a popular one with the people who have to use the software at 7am on a Monday.</p></div>
+        <div class="say"><h3>It trickles down. The way a company treats its internal tools is the way its customers end up getting treated.</h3><p>Get the experience right for your own staff first. Time is money, people stay longer, and there are fewer workarounds living in spreadsheets nobody admits to.</p></div>
+        <div class="say"><h3>Getting the requirements right the first time isn't a design problem. It's a business problem.</h3><p>The product gets built. Users get hands on it. And suddenly it doesn't work the way they actually work, because the requirements were written around how someone imagined it, not how it gets used.</p><p>Rework is expensive. Not just in time and money, but in the confidence your team has in the process.</p><p class="src"><a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" aria-labelledby="how-h">
+      <div class="col">
+        <p class="kicker">The process</p>
+        <h2 id="how-h">How I work</h2>
+        <p class="intro">I've usually been the only designer on a product, so I'm used to starting from nothing and leaving behind something the engineers can build from.</p>
+        <ul class="checks">
+          <li><svg viewBox="0 0 30 30" aria-hidden="true" class="scribble"><path d="M5 16c3 2 6 6 8 9 4-9 9-16 13-20"/></svg><span><b>Start with the people doing the work,</b> and what actually needs to happen. Not how someone imagines it should work.</span></li>
+          <li><svg viewBox="0 0 30 30" aria-hidden="true" class="scribble"><path d="M5 16c3 2 6 6 8 9 4-9 9-16 13-20"/></svg><span><b>Design in Figma and Claude Design,</b> and build the design system as I go so the next screen is faster than the last.</span></li>
+          <li><svg viewBox="0 0 30 30" aria-hidden="true" class="scribble"><path d="M5 16c3 2 6 6 8 9 4-9 9-16 13-20"/></svg><span><b>Build with AI.</b> Claude Code writes most of the code now. I review it and test it before it ships, and years of writing React, Angular and TypeScript myself help me spot what's off.</span></li>
+          <li><svg viewBox="0 0 30 30" aria-hidden="true" class="scribble"><path d="M5 16c3 2 6 6 8 9 4-9 9-16 13-20"/></svg><span><b>Measure with PostHog and real usage data.</b> Did it change anything? If not, it's not done.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="sec">
+      <div class="col">
+        <div class="callout">
+          <h3>Simple By Design</h3>
+          <p>A newsletter where I take a screen I came across, say what's bugging me about it, and redesign it. Quick explorations from instinct and patterns I've seen over the years. Not deep research.</p>
+          <a class="btn alt sm" href="https://www.linkedin.com/newsletters/simple-by-design-7282829164515082242/">Read it on LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="faq" aria-labelledby="faq-h">
+      <div class="col">
+        <p class="kicker">FAQ</p>
+        <h2 id="faq-h">Questions people ask</h2>
+        <dl class="faq">
+          <dt>Where are you?</dt>
+          <dd>Pittsburgh. I'm happy working remotely and I've done it for years.</dd>
+          <dt>Do you write code?</dt>
+          <dd>I used to write a lot of it: React, Angular and TypeScript. These days, like most people, I spend my time researching, designing and planning, then have AI write the code while I review and test it. Having written it myself makes me better at catching what's wrong.</dd>
+          <dt>What kind of products?</dt>
+          <dd>Software people use at work: admin consoles, internal platforms, scheduling and payment systems. Mostly B2B, and more and more of it has AI in it.</dd>
+          <dt>What are you looking for?</dt>
+          <dd>A senior design role on complex B2B, developer or AI products. The title matters less to me than the work: product designer, UX designer or design lead.</dd>
+          <dt>Can I see a resume?</dt>
+          <dd>Of course. <a href="Josh-Bauer-Resume.pdf">Here it is</a>.</dd>
+        </dl>
+      </div>
+    </section>
+
+    <section class="ask" id="hire" aria-labelledby="hire-h">
+      <div class="col">
+        <h2 id="hire-h">Hiring for design?</h2>
+        <p>Product designer, UX designer, design lead, whatever the title. If the work is making complex software simple, I'd love to hear about it. Email is the fastest way to reach me.</p>
+        <a class="email" href="mailto:bauerj07@gmail.com?subject=Hello%20from%20your%20site">bauerj07@gmail.com</a>
+        <div class="row">
+          <button class="btn" data-copy="bauerj07@gmail.com">Copy email</button>
+          <a class="btn alt" href="https://www.linkedin.com/in/josh-bauer-a108aa18/">LinkedIn</a>
+          <a class="btn alt" href="Josh-Bauer-Resume.pdf">Resume</a>
         </div>
       </div>
     </section>
   </main>
-  <footer class="foot"><div class="wrap">Josh Bauer, Pittsburgh. Hand-written HTML and CSS. Partner at <a href="https://rev3labs.com">Rev3 Labs</a>.</div></footer>
+  <footer class="foot">
+    <div class="wide">
+      <span>Josh Bauer, Pittsburgh. Partner at <a href="https://rev3labs.com">Rev3 Labs</a>. <a href="Josh-Bauer-Resume.pdf">Resume</a></span>
+      <span>Curious how this page is put together? <button id="inspectBtn" aria-pressed="false">Inspect it</button> or press <kbd>I</kbd>.</span>
+    </div>
+  </footer>
+  <script src="assets/site.js" defer></script>
 </body>
 </html>

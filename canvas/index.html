@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Josh Bauer, Product Designer (canvas)</title>
+<meta name="description" content="Josh Bauer's portfolio, laid out as a design canvas. Pan, zoom and inspect.">
+<meta name="theme-color" content="#012169">
+<link rel="icon" href="../images/JB%2032.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet">
+<style>
+@view-transition { navigation: auto; }
+:root {
+  --navy: #012169; --ink: #111a36; --mute: #4d5770; --rule: #e3e7f0; --tint: #eef2fa;
+  --chrome: #ffffff; --chrome-line: #e6e8ee; --chrome-ink: #1e2230; --chrome-mute: #6b7185;
+  --select: #0d99ff; --canvas: #f3f4f7; --z: 1;
+  --hand: "Caveat", cursive;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; overflow: hidden; overscroll-behavior: none; }
+body { font-family: "Figtree", system-ui, sans-serif; color: var(--chrome-ink); background: var(--canvas); -webkit-font-smoothing: antialiased; }
+button { font: inherit; color: inherit; }
+img { display: block; max-width: 100%; height: auto; }
+:focus-visible { outline: 2px solid var(--select); outline-offset: 2px; }
+
+/* ---------- App chrome ---------- */
+.app { display: grid; grid-template-rows: 48px 1fr; grid-template-columns: 240px 1fr 264px; height: 100vh; height: 100dvh; }
+.bar { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; padding: 0 10px; background: var(--chrome); border-bottom: 1px solid var(--chrome-line); position: relative; z-index: 5; }
+.file { display: flex; align-items: center; gap: 10px; min-width: 0; }
+.file img { width: 26px; height: 26px; }
+.file b { font-weight: 700; font-size: 14px; white-space: nowrap; }
+.file span { font-size: 14px; color: var(--chrome-mute); white-space: nowrap; }
+.ver { font-size: 11px; font-weight: 700; color: var(--navy); background: var(--tint); border-radius: 5px; padding: 2px 6px; cursor: help; }
+.tools { position: absolute; left: 50%; transform: translateX(-50%); display: flex; gap: 2px; background: var(--chrome); }
+.tool { width: 36px; height: 34px; display: grid; place-items: center; border: 0; background: transparent; border-radius: 7px; cursor: pointer; color: var(--chrome-ink); }
+.tool svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.tool:hover { background: #f1f2f6; }
+.tool[aria-pressed="true"] { background: var(--navy); color: #fff; }
+.bar-r { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+.zoom { border: 0; background: transparent; border-radius: 7px; padding: 7px 10px; font-size: 13px; font-weight: 600; cursor: pointer; font-variant-numeric: tabular-nums; min-width: 58px; }
+.zoom:hover { background: #f1f2f6; }
+.hello-btn { text-decoration: none; background: var(--navy); color: #fff; font-size: 13px; font-weight: 700; padding: 8px 14px; border-radius: 8px; }
+.hello-btn:hover { background: #0a2d7a; }
+.layers-btn { display: none; }
+.viewtog { display: inline-flex; background: #f1f2f6; border-radius: 9px; padding: 2px; gap: 2px; margin-right: 4px; }
+.viewtog a { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--chrome-mute); text-decoration: none; padding: 5px 10px; border-radius: 7px; }
+.viewtog a:hover { color: var(--chrome-ink); }
+.viewtog a[aria-current="page"] { background: #fff; color: var(--navy); box-shadow: 0 1px 2px rgba(17,26,54,.12); }
+.viewtog svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.panel { background: var(--chrome); overflow: auto; font-size: 13px; position: relative; z-index: 4; }
+.panel.left { border-right: 1px solid var(--chrome-line); }
+.panel.right { border-left: 1px solid var(--chrome-line); }
+.ph { margin: 0; padding: 14px 16px 8px; font-size: 12px; font-weight: 700; color: var(--chrome-ink); }
+.layers { list-style: none; margin: 0; padding: 0 8px 12px; }
+.layers button { width: 100%; display: flex; align-items: center; gap: 8px; text-align: left; border: 0; background: transparent; padding: 7px 8px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+.layers button:hover { background: #f1f2f6; }
+.layers button.on { background: #e6f3ff; }
+.layers svg { width: 14px; height: 14px; flex: none; fill: none; stroke: var(--chrome-mute); stroke-width: 1.4; }
+.sub { border-top: 1px solid var(--chrome-line); margin-top: 6px; padding-top: 6px; }
+.keys { padding: 4px 16px 16px; color: var(--chrome-mute); line-height: 1.7; }
+.keys kbd { font: inherit; font-size: 11px; font-weight: 700; border: 1px solid var(--chrome-line); border-radius: 4px; padding: 0 4px; color: var(--chrome-ink); background: #fafbfc; }
+
+.insp { padding: 0 16px 16px; }
+.insp .empty { color: var(--chrome-mute); line-height: 1.5; margin: 6px 0 0; }
+.insp h4 { margin: 16px 0 8px; font-size: 11px; font-weight: 700; color: var(--chrome-mute); }
+.insp .row { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-bottom: 6px; }
+.insp .f { background: #f5f6f8; border-radius: 6px; padding: 6px 8px; display: flex; justify-content: space-between; gap: 8px; font-variant-numeric: tabular-nums; }
+.insp .f i { font-style: normal; color: var(--chrome-mute); }
+.insp .wide { grid-column: 1 / -1; }
+.sw { display: inline-block; width: 14px; height: 14px; border-radius: 3px; border: 1px solid rgba(0,0,0,.12); vertical-align: -2px; margin-right: 6px; }
+.insp .what { font-weight: 700; font-size: 14px; margin: 10px 0 2px; }
+.insp .where { color: var(--chrome-mute); }
+
+/* ---------- Canvas ---------- */
+.canvas { position: relative; overflow: hidden; touch-action: none; cursor: default; background-color: var(--canvas);
+  background-image: radial-gradient(circle, #c7ccd8 1px, transparent 1.3px); }
+.canvas.hand, .canvas.panning { cursor: grab; }
+.canvas.panning { cursor: grabbing; }
+.world { position: absolute; left: 0; top: 0; transform-origin: 0 0; will-change: transform; }
+.canvas.flying .world { transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.sel { position: absolute; border: 2px solid var(--select); pointer-events: none; display: none; z-index: 3; }
+.sel b { position: absolute; left: -2px; top: -22px; background: var(--select); color: #fff; font-size: 11px; font-weight: 600; padding: 3px 6px; border-radius: 3px 3px 3px 0; white-space: nowrap; }
+.hint { position: absolute; left: 12px; bottom: 12px; background: rgba(255,255,255,.92); border: 1px solid var(--chrome-line); border-radius: 8px; padding: 7px 11px; font-size: 12px; color: var(--chrome-mute); pointer-events: none; transition: opacity .4s; }
+.hint.gone { opacity: 0; }
+
+/* Frames */
+.frame { position: absolute; background: #fff; box-shadow: 0 1px 2px rgba(17,26,54,.06), 0 8px 30px -12px rgba(17,26,54,.18); }
+.flabel { position: absolute; left: 0; bottom: 100%; padding-bottom: calc(6px / var(--z)); font-size: calc(12px / var(--z)); font-weight: 600; color: var(--chrome-mute); white-space: nowrap; transform-origin: 0 100%; }
+.frame.picked .flabel, .frame:hover .flabel { color: var(--select); }
+.fbody { padding: 64px 72px 72px; color: var(--ink); font-size: 19px; line-height: 1.6; }
+.fbody h1 { margin: 0 0 26px; font-size: 76px; line-height: 1; letter-spacing: -.035em; font-weight: 900; color: var(--navy); }
+.fbody h2 { margin: 0 0 22px; font-size: 44px; line-height: 1.05; letter-spacing: -.03em; font-weight: 900; color: var(--navy); }
+.fbody h3 { margin: 0 0 8px; font-size: 25px; line-height: 1.18; letter-spacing: -.02em; font-weight: 900; color: var(--navy); }
+.fbody p { margin: 0 0 14px; }
+.fbody a { color: var(--navy); font-weight: 700; text-decoration-thickness: 2px; text-underline-offset: .16em; text-decoration-color: #b9c4dd; }
+.kick { font-family: var(--hand); font-size: 26px; color: var(--navy); font-weight: 600; margin: 0 0 2px !important; }
+.lead { font-size: 22px; line-height: 1.5; }
+.b { display: inline-flex; align-items: center; font-weight: 800; font-size: 17px; padding: 14px 22px; border-radius: 12px; border: 3px solid var(--navy); background: #fff; color: var(--navy) !important; text-decoration: none !important; box-shadow: 4px 4px 0 var(--navy); cursor: pointer; }
+.b.solid { background: var(--navy); color: #fff !important; box-shadow: 4px 4px 0 #000b2e; }
+.ctas { display: flex; gap: 14px; flex-wrap: wrap; margin-top: 8px; }
+mark { color: #fff; background: var(--navy); padding: .02em .14em .1em; border-radius: .14em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.dot { position: relative; }
+.tiny { position: absolute; left: 30%; top: 62%; font-size: 1.1px; line-height: 1.2; letter-spacing: 0; font-weight: 700; color: #fff; white-space: nowrap; }
+.hello .who { font-weight: 700; color: var(--mute); margin: 0 0 18px; }
+.hello .note { font-family: var(--hand); font-size: 28px; color: var(--navy); font-weight: 600; transform: rotate(-3deg); margin: 18px 0 0 8px; }
+
+.op { margin: 0 0 30px; }
+.checks { margin: 0; padding-left: 22px; } .checks li { margin-bottom: 12px; } .checks b { color: var(--navy); }
+.faq dt { font-weight: 800; color: var(--navy); margin: 18px 0 4px; } .faq dd { margin: 0; }
+.news { margin-top: 44px; border: 3px solid var(--navy); border-radius: 16px; background: var(--tint); padding: 24px 28px; box-shadow: 6px 6px 0 var(--navy); }
+.h { margin-bottom: 26px; } .h .yr { margin: 0 0 2px; color: var(--mute); font-weight: 700; font-size: 16px; }
+
+.frame.navy { background: var(--navy); }
+.frame.navy .fbody, .frame.navy .fbody h2 { color: #fff; }
+.frame.navy .fbody p { color: #d5ddef; font-size: 21px; }
+.frame.navy .mail { display: block; font-size: 38px; font-weight: 900; letter-spacing: -.02em; color: #fff; text-decoration: none; margin: 18px 0 24px; }
+.frame.navy .b { background: transparent; border-color: #fff; color: #fff !important; box-shadow: 4px 4px 0 #000b2e; }
+
+.case .big { display: flex; align-items: baseline; gap: 18px; margin: 4px 0 18px; }
+.case .num { font-size: 96px; font-weight: 900; letter-spacing: -.05em; line-height: .9; color: var(--navy); }
+.case .lab { font-size: 22px; font-weight: 700; color: var(--mute); max-width: 14em; line-height: 1.25; }
+.facts { list-style: none; padding: 0; margin: 0 0 30px; display: flex; flex-wrap: wrap; gap: 8px; }
+.facts li { border: 2px solid var(--navy); border-radius: 999px; padding: 4px 13px; font-size: 15px; font-weight: 600; }
+.facts b { font-weight: 800; color: var(--navy); }
+.shot { margin: 28px 0 34px; background: var(--tint); border: 3px solid var(--navy); border-radius: 16px; padding: 28px; box-shadow: 6px 6px 0 var(--navy); }
+.shot img { margin: 0 auto; border-radius: 8px; }
+.prose h2 { font-size: 34px; margin-top: 46px; }
+.prose ol.steps { padding-left: 1.3em; } .prose li { margin-bottom: 10px; }
+.stat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin: 26px 0 34px; }
+.stat > div { border: 3px solid var(--navy); border-radius: 14px; padding: 16px; box-shadow: 4px 4px 0 var(--navy); }
+.stat b { display: block; font-size: 42px; font-weight: 900; letter-spacing: -.04em; line-height: 1; color: var(--navy); }
+.stat span { display: block; margin-top: 6px; font-size: 15px; font-weight: 600; line-height: 1.35; }
+.phones { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 26px 0 34px; }
+.phones figure { margin: 0; border: 3px solid var(--navy); border-radius: 14px; overflow: hidden; box-shadow: 4px 4px 0 var(--navy); background: #fff; }
+.phones figcaption { font-size: 14px; font-weight: 800; color: var(--navy); padding: 7px 10px; border-top: 2px solid var(--navy); background: var(--tint); line-height: 1.25; }
+.aside { color: var(--mute); font-size: 16px; background: var(--tint); border-radius: 12px; padding: 14px 18px; }
+
+/* Easter eggs */
+.sticky { position: absolute; width: 300px; background: #fff3a8; padding: 22px 22px 26px; font-family: var(--hand); font-size: 27px; line-height: 1.15; color: #3b3415; box-shadow: 0 10px 24px -10px rgba(0,0,0,.35); }
+.sticky.yellow { background: #ffe86b; }
+.sticky.pink { background: #ffd9e2; color: #4a2330; }
+.sticky.blue { background: #d9ecff; color: #1d3550; }
+.sticky.pink b { color: #8a4558; } .sticky.blue b { color: #3c5f86; }
+.sticky .todo { display: flex; align-items: center; gap: 12px; }
+.sticky .todo i { width: 22px; height: 22px; border: 2.5px solid currentColor; border-radius: 4px; flex: none; opacity: .75; }
+.sticky .list { margin: 0; padding: 0; list-style: none; }
+.sticky .list li { border-bottom: 1px solid rgba(59,52,21,.18); padding: 1px 0 2px; }
+.sticky .list li::before { content: "\2013 "; opacity: .6; }
+.sticky b { display: block; font-family: "Figtree", system-ui, sans-serif; font-size: 13px; font-weight: 800; letter-spacing: .02em; color: #7a6a1d; margin-bottom: 6px; }
+.egg .fbody { padding: 0; }
+.v1 { background: linear-gradient(90deg, #ff3cac, #ffd23f, #2bff88, #3ab8ff); padding: 56px 48px; text-align: center; font-family: "Comic Sans MS", "Chalkboard SE", cursive; color: #5a00a0; min-height: 480px; }
+.v1 h1 { font-family: inherit; font-size: 52px; color: #ff00c8; text-shadow: 4px 4px 0 #ffe600, 8px 8px 0 #00c3ff; letter-spacing: 0; line-height: 1.05; }
+.v1 p { font-size: 24px; font-weight: 700; }
+.v1-badge { display: inline-block; background: red; color: yellow; font-weight: 900; padding: 6px 14px; transform: rotate(-8deg); border: 4px dashed yellow; }
+.v1-btn { display: inline-block; margin-top: 16px; padding: 18px 34px; background: linear-gradient(#ffef00, #ff8a00); border: 5px outset #ffcc00; font-weight: 900; font-size: 26px; color: #c00; }
+.v2 { position: relative; overflow: hidden; background: #0b0b1a; color: #e9e9ff; padding: 60px 56px; min-height: 480px; }
+.v2-blob { position: absolute; right: -120px; top: -140px; width: 460px; height: 460px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #8a5cff, #ff4fd8 50%, transparent 70%); filter: blur(30px); opacity: .9; }
+.v2 h1 { position: relative; font-size: 46px; line-height: 1.05; color: #fff; letter-spacing: -.03em; margin: 0 0 18px; max-width: 12em; font-weight: 800; }
+.v2 p { position: relative; color: #a9a9c9; font-size: 19px; max-width: 26em; }
+.v2-pill { display: inline-block; border: 1px solid #5a4fd0; border-radius: 999px; padding: 4px 12px; font-size: 13px; color: #c9b8ff !important; }
+.v2-btn { position: relative; display: inline-block; margin-top: 10px; padding: 14px 26px; border-radius: 999px; background: linear-gradient(90deg, #7b5cff, #ff4fd8); color: #fff; font-weight: 700; }
+
+/* Comment pins keep a constant on-screen size */
+.pin { position: absolute; z-index: 2; transform: scale(calc(1 / var(--z))); transform-origin: 0 100%; }
+.pin-dot { width: 32px; height: 32px; border-radius: 16px 16px 16px 2px; border: 2px solid #fff; background: var(--navy); color: #fff; font-size: 11px; font-weight: 800; cursor: pointer; box-shadow: 0 4px 12px rgba(1,33,105,.35); transform: translateY(-100%); display: grid; place-items: center; }
+.pin-dot:hover { transform: translateY(-100%) scale(1.08); }
+.thread { position: absolute; right: 40px; top: -34px; width: 260px; background: #fff; border-radius: 12px; box-shadow: 0 16px 40px -10px rgba(17,26,54,.35), 0 0 0 1px rgba(17,26,54,.06); padding: 12px 14px; font-size: 14px; line-height: 1.45; color: var(--chrome-ink); }
+.thread p { margin: 0 0 10px; } .thread p:last-child { margin: 0; }
+.thread b { display: block; font-size: 12px; margin-bottom: 1px; }
+.pins-off .pin { display: none; }
+
+/* Mobile */
+@media (max-width: 1100px) { .app { grid-template-columns: 240px 1fr; } .panel.right { display: none; } }
+@media (max-width: 760px) {
+  .app { grid-template-columns: 1fr; }
+  .panel.left { display: none; position: absolute; left: 8px; top: 56px; width: min(280px, calc(100% - 16px)); max-height: 70vh; border: 1px solid var(--chrome-line); border-radius: 12px; box-shadow: 0 20px 50px -15px rgba(17,26,54,.4); z-index: 20; }
+  .panel.left.open { display: block; }
+  .file span, .tools, .ver, .file b, .hello-btn { display: none; }
+  .layers-btn { display: inline-flex; border: 1px solid var(--chrome-line); background: #fff; border-radius: 8px; padding: 6px 10px; font-size: 13px; font-weight: 600; cursor: pointer; }
+}
+@media (prefers-reduced-motion: reduce) { .canvas.flying .world { transition: none; } }
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="bar">
+    <div class="file">
+      <img src="../images/JB%2032.png" alt="">
+      <b>Josh Bauer</b><span>/ Portfolio</span>
+      <span class="ver" title="It usually takes about three versions to get something right.">v3</span>
+    </div>
+    <div class="tools" role="toolbar" aria-label="Tools">
+      <button class="tool" id="tMove" aria-pressed="true" title="Move and inspect (V)" aria-label="Move and inspect"><svg viewBox="0 0 20 20"><path d="M4 3l11 6-5 1.5L8 16z"/></svg></button>
+      <button class="tool" id="tHand" aria-pressed="false" title="Hand (H)" aria-label="Hand tool"><svg viewBox="0 0 20 20"><path d="M7 10V4.5a1.2 1.2 0 012.4 0V9m0-5.5v-.8a1.2 1.2 0 012.4 0V9m0-5.5a1.2 1.2 0 012.4 0V10m0-3.5a1.2 1.2 0 012.4 0V12c0 3-2.3 5.5-5.5 5.5h-.6c-2 0-3.4-.9-4.5-2.6L3.6 11a1.2 1.2 0 012-1.3L7 11.5"/></svg></button>
+      <button class="tool" id="tComment" aria-pressed="true" title="Comments (C)" aria-label="Show comments"><svg viewBox="0 0 20 20"><path d="M4 15.5V5.5a2 2 0 012-2h8a2 2 0 012 2v6a2 2 0 01-2 2H7.5z"/></svg></button>
+    </div>
+    <div class="bar-r">
+<nav class="viewtog" aria-label="View"><a id="toSite" href="../" data-base="../"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z"/><path d="M6.5 8h4M6.5 10.5h4"/></svg>Site</a><a href="./" aria-current="page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Canvas</a></nav>
+      <button class="layers-btn" id="layersBtn" aria-expanded="false" aria-controls="leftPanel">Frames</button>
+      <button class="zoom" id="zoomBtn" title="Zoom to fit (Shift+1)">100%</button>
+      <a class="hello-btn" href="mailto:bauerj07@gmail.com?subject=Hello%20from%20your%20canvas">Say hello</a>
+    </div>
+  </header>
+
+  <aside class="panel left" id="leftPanel" aria-label="Frames">
+    <p class="ph">Frames</p>
+    <ul class="layers" id="layers"><li><button data-fly="hello"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Hello</button></li><li><button data-fly="opinions"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Opinions</button></li><li><button data-fly="how"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>How I work + FAQ</button></li><li><button data-fly="before"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Before Rev3</button></li><li><button data-fly="hire"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Say hello</button></li><li><button data-fly="lee"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Lee Company</button></li><li><button data-fly="qujam"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Qujam</button></li><li><button data-fly="zebre"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Zebre Technologies</button></li><li><button data-fly="publishright"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>PublishRight</button></li></ul>
+    <div class="sub">
+      <p class="ph">Shortcuts</p>
+      <div class="keys">
+        Drag or scroll to pan<br>
+        <kbd>Ctrl</kbd> + scroll or pinch to zoom<br>
+        <kbd>Shift</kbd> <kbd>1</kbd> fit everything<br>
+        <kbd>+</kbd> <kbd>-</kbd> zoom, <kbd>0</kbd> 100%<br>
+        <kbd>V</kbd> inspect, <kbd>H</kbd> hand, <kbd>C</kbd> comments<br>
+        Click anything to inspect it
+      </div>
+    </div>
+  </aside>
+
+  <main class="canvas" id="canvas" aria-label="Portfolio canvas">
+    <div class="world" id="world">
+<section class="frame " id="f-hello" data-id="hello" data-label="Hello" style="left:0px;top:0px;width:1200px" aria-label="Hello"><div class="flabel">Hello</div><div class="fbody"><div class="hello">
+  <p class="who">Josh Bauer, product designer</p>
+  <h1>Software shouldn't need a <mark>training manual<span class="dot">.<span class="tiny" aria-hidden="true">You zoomed all the way in on a period. Respect.</span></span></mark></h1>
+  <p class="lead">I'm Josh Bauer, a product designer in Pittsburgh. I design the software people run their jobs on, and I've been at it long enough to have opinions. This canvas has my work, my opinions, and a few other things if you go looking.</p>
+  <div class="ctas"><button class="b solid" data-fly="lee">See the work</button><a class="b" href="mailto:bauerj07@gmail.com?subject=Hello%20from%20your%20canvas">Say hello</a></div>
+  <p class="note">Looking for a senior role!</p>
+</div></div></section>
+<section class="frame " id="f-opinions" data-id="opinions" data-label="Opinions" style="left:1360px;top:0px;width:880px" aria-label="Opinions"><div class="flabel">Opinions</div><div class="fbody"><p class="kick">Opinions</p><h2>Things I keep saying</h2><div class="op"><h3>Tell us what needs to happen. Let the design and development team figure out how.</h3><p>This has come up throughout my career.</p><p>Business users describe what they need and naturally explain how they want it to work too. That becomes the requirement. The designer builds it. And then everyone wonders why the product feels off.</p><p>They know the process better than anyone. That part's invaluable. But "put the filter at the top and show 8 columns in the table" is a design decision, not a business requirement.</p><p>Their feedback matters. Just not as the final answer on how something should work.</p><a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></div><div class="op"><h3>A layout isn't a design. Context is.</h3><p>AI can spit out a design that looks good in a screenshot. It can't tell you why users bail at step 3. It doesn't know your ops team pictures this flow completely differently than your customers do. It has no idea the last two versions of this exact screen already failed, or why.</p><p>It's not in the room. It doesn't know your product, your users, or how you got here.</p><a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></div><div class="op"><h3>The question isn't whether AI can make something that looks good. It's whether it's making the right thing.</h3><p>I use AI in our design work. It's useful for moving fast, generating options, exploring directions, and cutting out repetitive work. But it's not a silver bullet.</p><p>What it can't do is replace the judgment of someone who knows your users, your product, and why things are the way they are.</p><a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></div><div class="op"><h3>I don't think work software should need a training manual. If a screen needs a walkthrough, the screen is the problem.</h3><p>That's an unpopular position with people who sell training. It's a popular one with the people who have to use the software at 7am on a Monday.</p></div><div class="op"><h3>It trickles down. The way a company treats its internal tools is the way its customers end up getting treated.</h3><p>Get the experience right for your own staff first. Time is money, people stay longer, and there are fewer workarounds living in spreadsheets nobody admits to.</p></div><div class="op"><h3>Getting the requirements right the first time isn't a design problem. It's a business problem.</h3><p>The product gets built. Users get hands on it. And suddenly it doesn't work the way they actually work, because the requirements were written around how someone imagined it, not how it gets used.</p><p>Rework is expensive. Not just in time and money, but in the confidence your team has in the process.</p><a href="https://www.linkedin.com/in/josh-bauer-a108aa18/">From a post on LinkedIn</a></div></div></section>
+<section class="frame " id="f-how" data-id="how" data-label="How I work + FAQ" style="left:2400px;top:0px;width:880px" aria-label="How I work + FAQ"><div class="flabel">How I work + FAQ</div><div class="fbody"><p class="kick">The process</p><h2>How I work</h2><ul class="checks"><li><b>Start with the people doing the work.</b> and what actually needs to happen. Not how someone imagines it should work.</li><li><b>Design in Figma and Claude Design.</b> and build the design system as I go so the next screen is faster than the last.</li><li><b>Build with AI.</b> Claude Code writes most of the code now. I review it and test it before it ships, and years of writing React, Angular and TypeScript myself help me spot what's off.</li><li><b>Measure with PostHog and real usage data.</b> Did it change anything? If not, it's not done.</li></ul>
+<p class="kick" style="margin-top:56px">FAQ</p><h2>Questions people ask</h2><dl class="faq"><dt>Where are you?</dt><dd>Pittsburgh. I'm happy working remotely and I've done it for years.</dd><dt>Do you write code?</dt><dd>I used to write a lot of it: React, Angular and TypeScript. These days, like most people, I spend my time researching, designing and planning, then have AI write the code while I review and test it. Having written it myself makes me better at catching what's wrong.</dd><dt>What kind of products?</dt><dd>Software people use at work: admin consoles, internal platforms, scheduling and payment systems. Mostly B2B, and more and more of it has AI in it.</dd><dt>What are you looking for?</dt><dd>A senior design role on complex B2B, developer or AI products. The title matters less to me than the work: product designer, UX designer or design lead.</dd></dl>
+<div class="news"><h3>Simple By Design</h3><p>A newsletter where I take a screen I came across, say what's bugging me about it, and redesign it. Quick explorations from instinct and patterns I've seen over the years. Not deep research.</p><a href="https://www.linkedin.com/newsletters/simple-by-design-7282829164515082242/">Read it on LinkedIn</a></div></div></section>
+<section class="frame " id="f-before" data-id="before" data-label="Before Rev3" style="left:3440px;top:0px;width:760px" aria-label="Before Rev3"><div class="flabel">Before Rev3</div><div class="fbody"><p class="kick">Before Rev3</p><h2>The years before</h2><div class="h"><p class="yr">2021 to 2024</p><h3>Relode</h3><p>I built the Figma component library and the <a href="https://zeroheight.com/97983c91c/p/00c009-adhq">Zeroheight documentation</a> that design and engineering shared across several apps, and reviewed branches for accessibility before merge.</p></div><div class="h"><p class="yr">2015 to 2021</p><h3>Clean Earth</h3><p>Designer, developer and then application architect on the platform the company's facilities run on. I built its design system and style guide, ran releases and managed the developers. It's still in use.</p></div><div class="h"><p class="yr">2007 to 2015</p><h3>Siemens, Truelearn and AES</h3><p>Software and operator screens for the steel industry at Siemens, then web and mobile UI at Truelearn and AES Environmental.</p></div></div></section>
+<section class="frame navy" id="f-hire" data-id="hire" data-label="Say hello" style="left:4360px;top:0px;width:880px" aria-label="Say hello"><div class="flabel">Say hello</div><div class="fbody"><h2>Hiring for design?</h2>
+<p>Product designer, UX designer, design lead, whatever the title. If the work is making complex software simple, I'd love to hear about it.</p>
+<a class="mail" href="mailto:bauerj07@gmail.com?subject=Hello%20from%20your%20canvas">bauerj07@gmail.com</a>
+<div class="ctas"><a class="b" href="https://www.linkedin.com/in/josh-bauer-a108aa18/">LinkedIn</a><a class="b" href="../Josh-Bauer-Resume.pdf">Resume</a></div></div></section>
+<section class="frame case" id="f-lee" data-id="lee" data-label="Lee Company" style="left:0px;top:1100px;width:1040px" aria-label="Lee Company"><div class="flabel">Lee Company</div><div class="fbody"><p class="kick">Lee Company</p>
+<div class="big"><span class="num">4.7x</span><span class="lab">more paid jobs a year than the old booking channel</span></div>
+<h2>Turning online booking into a growth channel</h2><p class="lead">Lee Company does HVAC, plumbing, electrical and appliance repair for homeowners, all on Microsoft Dynamics 365 Field Service. I designed their customer self-scheduling experience, and paid jobs through it ran at more than four times the old booking channel.</p><ul class="facts"><li><b>My role</b> Design lead, partner</li><li><b>Team</b> Rev3 Labs</li><li><b>Status</b> Live</li></ul><figure class="shot"><img src="../images/work/lee-3-schedule.png" alt="Lee Company&#x27;s live scheduling screen showing the first available arrival windows, with the chosen window played back"></figure><div class="prose"><h2>The problem</h2>
+<p>Lee's old booking channel worked, but it had plateaued. Volume was flat year over year. The flow was several steps long and didn't show availability until the end, so about 80% of people dropped off before they ever saw an open appointment. Customers couldn't cancel, reschedule or check a plan balance on their own, so dispatch and the call center handled it by hand. And the whole thing lived inside a third-party widget that blocked anything we might want to build next.</p>
+<p>Lee wanted customers to book on their own time without adding work for the team behind the scenes.</p>
+<div class="stat"><div><b>4.7x</b><span>more paid jobs per year than the old channel</span></div><div><b>4x</b><span>the channel revenue of the old channel's typical year</span></div><div><b>10x</b><span>growth in maintenance bookings as customers self-serve planned work</span></div></div>
+<h2>One decision per screen</h2>
+<p>After stakeholder interviews, data analysis and lifecycle mapping, I designed the flow as a short series of single decisions, so a customer gets from "something's wrong" to a confirmed appointment without ever facing a form.</p>
+<ol class="steps">
+<li><b>Start with one easy question.</b> Is this for a home or a business? That's the whole first screen.</li>
+<li><b>Describe the problem in your own words.</b> Customers type what's wrong, or tap one of the common issues for this time of year in their area. Behind the scenes, an LLM with retrieval over Lee's service catalog clarifies the issue and picks the right kind of technician, so the customer never has to know which trade to ask for.</li>
+<li><b>Make choosing a time the easy part.</b> First available slots up front, a calendar if you'd rather browse, clear arrival windows, and an "ASAP" option. The chosen window is played back before you continue.</li>
+<li><b>Close the loop.</b> A summary with a reference number, then an email and reminders before the visit. Every booking lands in Dynamics as a work order, ready to dispatch.</li>
+</ol>
+<div class="phones">
+<figure><img src="../images/work/lee-1-start.png" alt="Start screen asking whether the visit is for a home or a business" width="340" height="396"><figcaption>1. Home or business</figcaption></figure>
+<figure><img src="../images/work/lee-2-details.png" alt="Service details screen with a free-text issue description and suggested common issues for the season" width="340" height="396"><figcaption>2. Describe the problem</figcaption></figure>
+<figure><img src="../images/work/lee-3-schedule.png" alt="Schedule screen with first available arrival windows and the chosen window played back" width="340" height="396"><figcaption>3. Pick a time</figcaption></figure>
+<figure><img src="../images/work/lee-4-confirmed.png" alt="Confirmation screen with the appointment summary and a reference number" width="340" height="396"><figcaption>4. Confirmed</figcaption></figure>
+</div>
+<h2>What happened</h2>
+<p>Comparing January through July 2026 with the same window in the two prior years, self-scheduling grew across every high-volume service line. Cooling maintenance ran at 13.6x the old channel, plumbing maintenance at 10x, and HVAC, electrical and plumbing service calls each around 4x. Paid job volume more than quadrupled after two years of flat volume, and average job value stayed in the same range as before, so the growth was real volume, not cheaper jobs.</p>
+<p>I wrote the SQL against Lee's Field Service data to get those numbers, comparing self-scheduled jobs with jobs booked the usual way on both adoption and revenue, so Lee had something better than a hunch about whether it was paying off.</p>
+<p class="aside">Built on Dynamics 365 Field Service with Angular, Python, Azure and Azure AI Foundry.</p></div></div></section>
+<section class="frame case" id="f-qujam" data-id="qujam" data-label="Qujam" style="left:1200px;top:1100px;width:1040px" aria-label="Qujam"><div class="flabel">Qujam</div><div class="fbody"><p class="kick">Qujam</p>
+<div class="big"><span class="num">79%</span><span class="lab">growth in payment volume in thirteen months</span></div>
+<h2>Growing a self-serve geofencing ad platform</h2><p class="lead">Qujam lets small businesses and agencies build location-targeted ad campaigns themselves, across display, streaming video, pre-roll and audio. Since September 2025 Rev3 has been Qujam's design and engineering team, and I lead the design. Payment volume grew 79% over the period.</p><ul class="facts"><li><b>My role</b> Design lead, partner</li><li><b>Team</b> Rev3 Labs</li><li><b>Status</b> Live, ongoing</li></ul><figure class="shot"><img src="../images/work/qujam-login.jpg" alt="Qujam sign-in screen with the tagline Hyperlocal ads for all"></figure><div class="prose"><h2>The problem</h2>
+<p>To keep growing, Qujam needed more ways to target and buy. The multi-step campaign builder needed to be clearer and easier to finish. And the live product had to keep running for paying advertisers the whole time we were changing it.</p>
+<div class="stat"><div><b>79%</b><span>growth in gross payment volume</span></div><div><b>730</b><span>new paying customers, up 39%</span></div><div><b>3.2x</b><span>campaigns delivering per day</span></div></div>
+<h2>Hyper-Grid geofencing</h2>
+<p>The biggest thing we shipped. Geofencing usually means wrestling with coordinates or drawing shapes by hand. Hyper-Grid lets an advertiser click pre-defined half-mile grid cells on a map instead. Address search jumps to a spot without losing the grid, a counter tracks what's selected, and first-time users get a short tip and a walkthrough. It sits alongside Precision geofencing's custom shapes, and the two are explained side by side in plain language before anyone commits.</p>
+<figure class="shot"><img src="../images/work/qujam-geofencing-mode.jpg" alt="Campaign type step: Precision or Hyper-Grid geofencing, and Addressable, Drawn Geofence or Event targeting" width="800" height="500"></figure>
+<h2>A clearer path to launch</h2>
+<p>I redesigned the campaign builder from the ground up around Hyper-Grid, as a seven-step walk: name it, pick the mode and target type, define locations, set reach, upload creative, set the flight and budget, review. Each step locks the choices that depend on it, so nobody ends up with a video ad on a display campaign or a map with no place on it. Along the way:</p>
+<ul>
+<li>Budgets with live estimates. Spend, CPM, impressions and clicks update as the number changes.</li>
+<li>Partner audience segments as an optional step. Anyone who doesn't need them skips it.</li>
+<li>Conversion tracking with a numbered setup for page-visit and button-click goals, shown only when a campaign needs it.</li>
+<li>Redesigned campaign cards and a guided setup wizard.</li>
+</ul>
+<figure class="shot"><img src="../images/work/qujam-campaign-setup.jpg" alt="Campaign setup step: organization, campaign name and the four ad types, Display, Streaming Video, Internet Video and Digital Audio" width="800" height="500"></figure>
+<h2>What shipped, in order</h2>
+<ol class="steps">
+<li><b>Dec 2025.</b> Digital audio ads, a new channel for podcast, music-streaming and radio-app audiences.</li>
+<li><b>Jan 2026.</b> Event geofencing: reach people at an event, then retarget them for up to 30 days after.</li>
+<li><b>Apr to Sep 2026.</b> The rebuilt campaign flow: budget UX, the setup wizard, new campaign cards.</li>
+<li><b>Jul to Oct 2026.</b> Hyper-Grid, partner audiences and conversion tracking.</li>
+</ol>
+<h2>What happened</h2>
+<p>Comparing the thirteen months since Rev3 joined with the thirteen before: gross payment volume up 79%, 730 new paying customers (up 39%), 67% more advertisers spending on a typical day, and 3.2x as many campaigns delivering per day. More than 320 commits to production, and the platform never went down for it.</p>
+<p class="aside">Vue.js on AWS with Stripe billing and a programmatic DSP integration. We also reviewed federal and state geofencing rules so the feature stays on the right side of privacy regulation.</p></div></div></section>
+<section class="frame case" id="f-zebre" data-id="zebre" data-label="Zebre Technologies" style="left:2400px;top:1100px;width:1040px" aria-label="Zebre Technologies"><div class="flabel">Zebre Technologies</div><div class="fbody"><p class="kick">Zebre Technologies</p>
+<div class="big"><span class="num">75%</span><span class="lab">of an imaging archive can be data nobody needs</span></div>
+<h2>A portal built on rules, not one-offs</h2><p class="lead">Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I'm now designing their customer portal and the design-system rules behind it.</p><ul class="facts"><li><b>My role</b> Product designer</li><li><b>Team</b> Rev3 Labs</li><li><b>Status</b> In progress</li></ul><figure class="shot"><img src="../images/work/medical-imaging-storage-analyzer-showcase.png" alt="Zebre analytics dashboard screens showing storage totals, file counts and estimated savings"></figure><div class="prose"><h2>The problem</h2>
+<p>Large imaging archives are mostly non-diagnostic data, up to 75% of it. That drives up storage costs, slows transfers, and makes it hard to prepare imaging for cloud migration or AI pipelines. IT leaders had no clear view of where the waste was.</p>
+<div class="stat"><div><b>75%</b><span>of archive data can be non-diagnostic</span></div><div><b>HIPAA</b><span>compliant scanner and cloud API</span></div><div><b>AA</b><span>WCAG target for the portal</span></div></div>
+<h2>The analyzer</h2>
+<p>Rev3 ran stakeholder interviews, mapped the constraints, and validated the concept with a Figma prototype before building. I designed the responsive dashboard that shows storage savings and optimization recommendations, backed by a Windows scanner and cloud API built in Angular, .NET and Azure.</p>
+<h2>The portal</h2>
+<p>Zebre's existing app had drifted: similar screens looked and behaved differently. The new customer portal is a fresh build, so I'm using it to stop that drift from carrying over.</p>
+<ul>
+<li>Design-system guidelines and rules for the new platform, written so legacy inconsistencies get caught and resolved in the rebuild instead of copied.</li>
+<li>A login for existing paying customers: a full-bleed green layout with a logomark watermark, with a centered-card version kept as a backup for the team to compare.</li>
+<li>Products that can be turned on or off per customer, so the portal fits whatever each account has.</li>
+<li>Working personas, reviewed with Zebre's CEO before being used as the design's north star.</li>
+</ul>
+<h2>Designing for healthcare</h2>
+<ul>
+<li><strong>Accessibility.</strong> The target is WCAG AA. Color blindness has come up with some of Zebre's customers, so status and meaning never rely on color alone.</li>
+<li><strong>No patient data.</strong> Designs and demo content never show protected health information: no patient names, record numbers, accession numbers or study dates.</li>
+</ul>
+<p>I also built Zebre's marketing site in Webflow and set up cookie consent so tracking only runs after a visitor agrees.</p></div></div></section>
+<section class="frame case" id="f-publishright" data-id="publishright" data-label="PublishRight" style="left:3600px;top:1100px;width:1040px" aria-label="PublishRight"><div class="flabel">PublishRight</div><div class="fbody"><p class="kick">PublishRight</p>
+<div class="big"><span class="num">20 min</span><span class="lab">to proofread what used to take weeks</span></div>
+<h2>An AI proofreader, from brand to product</h2><p class="lead">PublishRight is an AI proofreading platform for Christian publishers, built as a joint venture between Rev3 Labs and a publishing partner. I designed it from the ground up.</p><ul class="facts"><li><b>My role</b> Brand, site and product design</li><li><b>Team</b> Rev3 Labs</li><li><b>Status</b> Live</li></ul><figure class="shot"><img src="../images/work/proofreading-software-showcase.png" alt="PublishRight marketing site and product screens with tracked AI edits"></figure><div class="prose"><h2>The problem</h2>
+<p>Traditional proofreading takes weeks and holds up publishing schedules. Style guides get applied inconsistently across manuscripts and editors, and generic editing tools don't understand theological terms or biblical references. Editors were spending their time on formatting instead of content and authors.</p>
+<div class="stat"><div><b>~20 min</b><span>proofreading that used to take weeks</span></div><div><b>1 month</b><span>sooner to market</span></div></div>
+<h2>What I designed</h2>
+<ul>
+<li>The PublishRight brand and the marketing site.</li>
+<li>The product end to end: an engine that learns each imprint's style guide and applies it across manuscripts, with a change-tracking view that highlights every edit and explains it so an editor can approve or reject it.</li>
+<li>The trust layer: the AI shows its work, and the editor always has the last word.</li>
+</ul>
+<h2>Under the hood</h2>
+<p>Angular and Tailwind on the front end, .NET and Azure AI Services behind it, with Cosmos DB, Azure Functions and Blob Storage so manuscripts of any size are handled and sensitive content stays protected.</p></div></div></section>
+<section class="frame egg" id="f-v1" data-id="v1" data-label="Hello v1 (please don&#x27;t)" style="left:-1900px;top:0px;width:800px" aria-label="Hello v1 (please don&#x27;t)"><div class="flabel">Hello v1 (please don&#x27;t)</div><div class="fbody"><div class="v1"><p class="v1-badge">NEW!!!</p><h1>Welcome To My Portfolio Website!!!</h1><p>Click Below To See My Awesome Work</p><span class="v1-btn">CLICK HERE</span></div></div></section>
+<section class="frame egg" id="f-v2" data-id="v2" data-label="Hello v2 (closer)" style="left:-960px;top:0px;width:800px" aria-label="Hello v2 (closer)"><div class="flabel">Hello v2 (closer)</div><div class="fbody"><div class="v2"><span class="v2-blob"></span><p class="v2-pill">AI-powered</p><h1>Revolutionizing workflows with design-led synergy</h1><p>Empowering stakeholders to unlock seamless, scalable, best-in-class experiences.</p><span class="v2-btn">Get started</span></div></div></section>
+
+<div class="sticky egg" style="left:-1500px;top:620px;transform:rotate(-2deg)"><b>Random fact</b>My favorite sports team is Duke.</div>
+<div class="sticky egg pink" style="left:560px;top:960px;transform:rotate(2.5deg);width:250px"><b>To do</b><span class="todo"><i></i>Take the garbage out</span></div>
+<div class="sticky egg" style="left:90px;top:900px;transform:rotate(-1.5deg);width:280px"><b>Grocery list</b><ul class="list"><li>00 flour</li><li>Eggs</li><li>Heavy cream</li><li>Vanilla beans</li><li>A brisket</li></ul></div>
+<div class="sticky egg blue" style="left:3480px;top:980px;transform:rotate(-3deg);width:270px"><b>Note to self</b>Stop redesigning restaurant menus in my head.</div>
+<div class="sticky egg" style="left:4440px;top:760px;transform:rotate(2deg);width:280px"><b>Reminder</b>Reply to whoever found this note. (That's you. Email me.)</div>
+<div class="sticky egg yellow" id="edge" style="left:5600px;top:4200px;transform:rotate(3deg)"><b>Random fact</b>I make homemade pasta and ice cream, and I'll cook just about anything on my smoker.</div>
+<div class="sticky egg" style="left:1380px;top:-260px;transform:rotate(1.5deg);width:260px"><b>Random fact</b>My family and I love to vacation at the beach.</div>
+
+<div class="pin" data-frame="hello" data-dx="1080" data-dy="96"><button class="pin-dot" aria-label="Open comment">JB</button><div class="thread" hidden><p><b>Josh</b>Is “training manual” too spicy for a headline?</p><p><b>Josh</b>No. Keeping it.</p></div></div>
+<div class="pin" data-frame="lee" data-dx="980" data-dy="60"><button class="pin-dot" aria-label="Open comment">JB</button><div class="thread" hidden><p><b>Josh</b>The first version of this page had no numbers.</p><p><b>Josh</b>Third version leads with them. Classic.</p></div></div>
+<div class="pin" data-frame="how" data-dx="820" data-dy="1240"><button class="pin-dot" aria-label="Open comment">JB</button><div class="thread" hidden><p><b>Josh</b>Pretty sure this is the part recruiters skip to.</p><p><b>Josh</b>Hi.</p></div></div>
+<div class="pin" data-frame="opinions" data-dx="820" data-dy="60"><button class="pin-dot" aria-label="Open comment">JB</button><div class="thread" hidden><p><b>Josh</b>I could have kept going.</p><p><b>Josh</b>Cut it at six.</p></div></div>
+    </div>
+    <div class="sel" id="sel"><b></b></div>
+    <div class="hint" id="hint">Drag to look around. Click anything to inspect it.</div>
+  </main>
+
+  <aside class="panel right" aria-label="Inspect">
+    <p class="ph">Inspect</p>
+    <div class="insp" id="insp"><p class="empty">Click anything on the canvas to see how it's built: type, color and size.</p></div>
+  </aside>
+</div>
+
+<script>
+(() => {
+  const canvas = document.getElementById('canvas'), world = document.getElementById('world');
+  const sel = document.getElementById('sel'), insp = document.getElementById('insp'), hint = document.getElementById('hint');
+  const zoomBtn = document.getElementById('zoomBtn');
+  const frames = [...document.querySelectorAll('.frame')];
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let x = 0, y = 0, z = 1, picked = null, tool = 'move';
+  const MINZ = 0.05, MAXZ = 24;
+
+  function render() {
+    world.style.transform = `translate(${x}px, ${y}px) scale(${z})`;
+    world.style.setProperty('--z', z);
+    let g = 24 * z; while (g < 12) g *= 2;
+    canvas.style.backgroundSize = g + 'px ' + g + 'px';
+    canvas.style.backgroundPosition = x + 'px ' + y + 'px';
+    zoomBtn.textContent = Math.round(z * 100) + '%';
+    placeSel();
+  }
+  function zoomAt(px, py, nz) {
+    nz = Math.max(MINZ, Math.min(MAXZ, nz));
+    x = px - (px - x) * (nz / z); y = py - (py - y) * (nz / z); z = nz; render();
+  }
+  function bounds(list) {
+    let l = Infinity, t = Infinity, r = -Infinity, b = -Infinity;
+    list.forEach(f => { const fx = f.offsetLeft, fy = f.offsetTop; l = Math.min(l, fx); t = Math.min(t, fy); r = Math.max(r, fx + f.offsetWidth); b = Math.max(b, fy + f.offsetHeight); });
+    return { l, t, r, b };
+  }
+  function fly(bx, opts = {}) {
+    const vw = canvas.clientWidth, vh = canvas.clientHeight, pad = opts.pad ?? 60;
+    const w = bx.r - bx.l, h = bx.b - bx.t;
+    let nz = Math.min((vw - pad * 2) / w, (vh - pad * 2) / h, opts.max ?? 1);
+    if (opts.width) nz = Math.min((vw - pad * 2) / w, opts.max ?? 1);
+    nz = Math.max(MINZ, nz);
+    x = vw / 2 - (bx.l + w / 2) * nz;
+    y = opts.top ? pad + 24 - bx.t * nz : vh / 2 - (bx.t + h / 2) * nz;
+    z = nz;
+    if (!reduce && opts.animate !== false) { canvas.classList.add('flying'); clearTimeout(fly.t); fly.t = setTimeout(() => canvas.classList.remove('flying'), 650); }
+    render();
+  }
+  const frameBox = f => bounds([f]);
+  function flyTo(id, animate) {
+    const f = document.getElementById('f-' + id); if (!f) return;
+    const tall = f.offsetHeight > f.offsetWidth * 1.2;
+    fly(frameBox(f), tall ? { width: true, top: true, max: 1, animate } : { max: 1, animate });
+    document.querySelectorAll('.layers button').forEach(b => b.classList.toggle('on', b.dataset.fly === id));
+    closeLayers();
+  }
+  const fitAll = () => { const bx = bounds(frames.filter(f => !f.classList.contains('egg'))); bx.t -= 60; fly(bx, { pad: 40 }); };
+
+  // lay out: work frames sit below the tallest top-row frame, the edge note past everything
+  function layout() {
+    const top = frames.filter(f => !f.classList.contains('case') && !f.classList.contains('egg'));
+    const bottom = Math.max(...top.map(f => f.offsetTop + f.offsetHeight));
+    frames.filter(f => f.classList.contains('case')).forEach(f => f.style.top = (bottom + 240) + 'px');
+    const all = bounds(frames), edge = document.getElementById('edge');
+    if (edge) { edge.style.left = (all.r + 420) + 'px'; edge.style.top = (all.b + 380) + 'px'; }
+    document.querySelectorAll('.pin').forEach(p => {
+      const f = document.getElementById('f-' + p.dataset.frame);
+      p.style.left = (f.offsetLeft + +p.dataset.dx) + 'px'; p.style.top = (f.offsetTop + +p.dataset.dy) + 'px';
+    });
+    if (picked) placeSel();
+  }
+  document.querySelectorAll('.pin').forEach(p => {
+    const dot = p.querySelector('.pin-dot'), th = p.querySelector('.thread');
+    dot.addEventListener('click', e => { e.stopPropagation(); const open = th.hidden; document.querySelectorAll('.thread').forEach(t => t.hidden = true); th.hidden = !open; });
+  });
+  layout();
+  document.querySelectorAll('.frame img').forEach(i => i.complete || i.addEventListener('load', layout, { once: true }));
+
+  // ---------- pan, zoom, select ----------
+  const pts = new Map(); let start = null, moved = false, pinch = null, spaceDown = false;
+  canvas.addEventListener('pointerdown', e => {
+    if (e.target.closest('.pin, .thread')) return;
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    if (pts.size === 1) { start = { px: e.clientX, py: e.clientY, x, y }; moved = false; }
+    if (pts.size === 2) { const [a, b] = [...pts.values()]; pinch = { d: Math.hypot(a.x - b.x, a.y - b.y), z, mx: (a.x + b.x) / 2, my: (a.y + b.y) / 2, x, y }; }
+  });
+  addEventListener('pointermove', e => {
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId, { x: e.clientX, y: e.clientY });
+    const r = canvas.getBoundingClientRect();
+    if (pts.size === 2 && pinch) {
+      const [a, b] = [...pts.values()];
+      const d = Math.hypot(a.x - b.x, a.y - b.y), mx = (a.x + b.x) / 2, my = (a.y + b.y) / 2;
+      const nz = Math.max(MINZ, Math.min(MAXZ, pinch.z * d / pinch.d));
+      x = (mx - r.left) - ((pinch.mx - r.left) - pinch.x) * (nz / pinch.z); y = (my - r.top) - ((pinch.my - r.top) - pinch.y) * (nz / pinch.z); z = nz;
+      moved = true; render(); return;
+    }
+    if (!start) return;
+    const dx = e.clientX - start.px, dy = e.clientY - start.py;
+    if (!moved && Math.hypot(dx, dy) < 5) return;
+    if (!moved) { moved = true; canvas.classList.add('panning'); try { canvas.setPointerCapture(e.pointerId); } catch (_) {} hideHint(); }
+    x = start.x + dx; y = start.y + dy; render();
+  });
+  const end = e => { pts.delete(e.pointerId); if (pts.size < 2) pinch = null; if (!pts.size) { start = null; canvas.classList.remove('panning'); } };
+  addEventListener('pointerup', end); addEventListener('pointercancel', end);
+
+  canvas.addEventListener('click', e => {
+    if (moved) { e.preventDefault(); e.stopPropagation(); moved = false; return; }
+    if (e.target.closest('.pin, .thread')) return;
+    document.querySelectorAll('.thread').forEach(t => t.hidden = true);
+    const fl = e.target.closest('[data-fly]'); if (fl) { e.preventDefault(); flyTo(fl.dataset.fly); return; }
+    if (e.target.closest('a')) return;                     // real links still work
+    if (tool !== 'move') return;
+    const el = e.target.closest('.frame h1, .frame h2, .frame h3, .frame p, .frame li, .frame dt, .frame dd, .frame img, .frame mark, .frame figure, .frame .num, .frame .b, .stat > div, .sticky, .frame');
+    pick(el && el !== canvas ? el : null);
+  }, true);
+
+  canvas.addEventListener('wheel', e => {
+    e.preventDefault(); hideHint();
+    const r = canvas.getBoundingClientRect();
+    if (e.ctrlKey || e.metaKey) zoomAt(e.clientX - r.left, e.clientY - r.top, z * Math.exp(-e.deltaY * (e.deltaMode ? 0.05 : 0.0022)));
+    else { x -= e.deltaX; y -= e.deltaY; render(); }
+  }, { passive: false });
+
+  // ---------- inspect ----------
+  const hex = c => { const m = c.match(/\d+(\.\d+)?/g); if (!m) return c; const [r, g, b, a] = m.map(Number); if (a === 0) return 'none'; return '#' + [r, g, b].map(v => v.toString(16).padStart(2, '0')).join('').toUpperCase(); };
+  const W = { 400: 'Regular', 500: 'Medium', 600: 'Semibold', 700: 'Bold', 800: 'Extrabold', 900: 'Black' };
+  const kind = el => el.tagName === 'IMG' ? 'Image' : el.classList.contains('frame') ? 'Frame' : el.classList.contains('sticky') ? 'Sticky note' : /^H[1-3]$/.test(el.tagName) ? 'Heading ' + el.tagName[1] : el.classList.contains('b') ? 'Button' : el.tagName === 'MARK' ? 'Highlight' : el.tagName === 'FIGURE' ? 'Image frame' : 'Text';
+  function pick(el) {
+    document.querySelectorAll('.frame.picked').forEach(f => f.classList.remove('picked'));
+    picked = el;
+    if (!el) { sel.style.display = 'none'; insp.innerHTML = '<p class="empty">Click anything on the canvas to see how it’s built: type, color and size.</p>'; return; }
+    const fr = el.closest('.frame'); fr && fr.classList.add('picked');
+    const cs = getComputedStyle(el), r = el.getBoundingClientRect();
+    const w = Math.round(r.width / z), h = Math.round(r.height / z);
+    const isText = !['IMG', 'FIGURE'].includes(el.tagName) && !el.classList.contains('frame');
+    const fill = hex(cs.backgroundColor), color = hex(cs.color);
+    const fam = cs.fontFamily.split(',')[0].replace(/"/g, '');
+    let h2 = `<p class="what">${kind(el)}</p><p class="where">${fr ? fr.dataset.label : 'Canvas'}</p>
+      <h4>Size</h4><div class="row"><div class="f"><i>W</i>${w}</div><div class="f"><i>H</i>${h}</div></div>`;
+    if (isText) h2 += `<h4>Type</h4><div class="row"><div class="f wide">${fam}</div><div class="f"><i>Weight</i>${W[cs.fontWeight] || cs.fontWeight}</div><div class="f"><i>Size</i>${Math.round(parseFloat(cs.fontSize))}</div><div class="f"><i>Line</i>${cs.lineHeight === 'normal' ? 'Auto' : Math.round(parseFloat(cs.lineHeight))}</div><div class="f"><i>Track</i>${cs.letterSpacing === 'normal' ? '0' : (parseFloat(cs.letterSpacing) / parseFloat(cs.fontSize)).toFixed(3) + 'em'}</div></div>
+      <h4>Text color</h4><div class="row"><div class="f wide"><span><span class="sw" style="background:${color}"></span>${color}</span>${color === '#012169' ? '<i>Duke Navy</i>' : ''}</div></div>`;
+    if (fill !== 'none') h2 += `<h4>Fill</h4><div class="row"><div class="f wide"><span><span class="sw" style="background:${fill}"></span>${fill}</span>${fill === '#012169' ? '<i>Duke Navy</i>' : ''}</div></div>`;
+    if (parseFloat(cs.borderTopLeftRadius)) h2 += `<h4>Corner radius</h4><div class="row"><div class="f wide">${Math.round(parseFloat(cs.borderTopLeftRadius))}</div></div>`;
+    insp.innerHTML = h2;
+    sel.querySelector('b').textContent = `${kind(el)}  ${w} × ${h}`;
+    placeSel();
+  }
+  function placeSel() {
+    if (!picked) return;
+    const c = canvas.getBoundingClientRect(), r = picked.getBoundingClientRect();
+    Object.assign(sel.style, { display: 'block', left: (r.left - c.left) + 'px', top: (r.top - c.top) + 'px', width: r.width + 'px', height: r.height + 'px' });
+  }
+
+  // ---------- tools & keys ----------
+  const tMove = document.getElementById('tMove'), tHand = document.getElementById('tHand'), tComment = document.getElementById('tComment');
+  function setTool(t) { tool = t; tMove.setAttribute('aria-pressed', t === 'move'); tHand.setAttribute('aria-pressed', t === 'hand'); canvas.classList.toggle('hand', t === 'hand'); if (t === 'hand') pick(null); }
+  tMove.onclick = () => setTool('move'); tHand.onclick = () => setTool('hand');
+  tComment.onclick = () => { const on = tComment.getAttribute('aria-pressed') !== 'true'; tComment.setAttribute('aria-pressed', on); world.classList.toggle('pins-off', !on); };
+  zoomBtn.onclick = fitAll;
+  document.querySelectorAll('.layers [data-fly]').forEach(b => b.onclick = () => flyTo(b.dataset.fly));
+  const lp = document.getElementById('leftPanel'), lb = document.getElementById('layersBtn');
+  lb.onclick = () => { const o = !lp.classList.contains('open'); lp.classList.toggle('open', o); lb.setAttribute('aria-expanded', o); };
+  function closeLayers() { lp.classList.remove('open'); lb.setAttribute('aria-expanded', false); }
+  addEventListener('keydown', e => {
+    if (e.target.closest('input, textarea')) return;
+    const cx = canvas.clientWidth / 2, cy = canvas.clientHeight / 2;
+    if (e.shiftKey && (e.key === '!' || e.code === 'Digit1')) { e.preventDefault(); fitAll(); }
+    else if (e.key === '+' || e.key === '=') zoomAt(cx, cy, z * 1.25);
+    else if (e.key === '-' || e.key === '_') zoomAt(cx, cy, z / 1.25);
+    else if (e.key === '0' && !e.shiftKey) zoomAt(cx, cy, 1);
+    else if (e.key === 'v' || e.key === 'V') setTool('move');
+    else if (e.key === 'h' || e.key === 'H') setTool('hand');
+    else if (e.key === 'c' || e.key === 'C') tComment.click();
+    else if (e.key === 'Escape') { pick(null); closeLayers(); document.querySelectorAll('.thread').forEach(t => t.hidden = true); }
+    else if (e.key.startsWith('Arrow')) { const s = e.shiftKey ? 400 : 120; if (e.key === 'ArrowLeft') x += s; if (e.key === 'ArrowRight') x -= s; if (e.key === 'ArrowUp') y += s; if (e.key === 'ArrowDown') y -= s; render(); hideHint(); }
+  });
+  function hideHint() { hint.classList.add('gone'); }
+  addEventListener('resize', render);
+
+  // ---------- start on the hello frame ----------
+  // the Site toggle returns to the page for whichever frame you're looking at
+  const SITE = { hello: '', opinions: '#opinions', how: '#faq', before: '#work', hire: '#hire', lee: 'work/lee.html', qujam: 'work/qujam.html', zebre: 'work/zebre.html', publishright: 'work/publishright.html' };
+  const toSite = document.getElementById('toSite');
+  if (toSite) toSite.addEventListener('click', e => {
+    const cr = canvas.getBoundingClientRect(), cx = cr.left + cr.width / 2, cy = cr.top + cr.height / 3;
+    let best = 'hello', bd = Infinity;
+    frames.filter(f => !f.classList.contains('egg')).forEach(f => {
+      const r = f.getBoundingClientRect();
+      const dx = Math.max(r.left - cx, 0, cx - r.right), dy = Math.max(r.top - cy, 0, cy - r.bottom);
+      const d = Math.hypot(dx, dy); if (d < bd) { bd = d; best = f.dataset.id; }
+    });
+    toSite.href = toSite.dataset.base + (SITE[best] ?? '');
+  });
+
+  const startView = () => {
+    let h = ''; try { h = decodeURIComponent(location.hash.slice(1)); } catch (_) {}
+    if (h && document.getElementById('f-' + h)) { flyTo(h, false); return; }
+    const f = document.getElementById('f-hello');
+    if (canvas.clientWidth < 600) {           // phones: readable zoom, anchored on the headline
+      z = 0.5; x = 16 - f.offsetLeft * z; y = 48 - f.offsetTop * z; render(); return;
+    }
+    fly(frameBox(f), { max: 1, pad: 64, animate: false });
+  };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => { layout(); startView(); });
+  startView();
+})();
+</script>
+</body>
+</html>

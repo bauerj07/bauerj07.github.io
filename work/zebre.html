@@ -3,42 +3,41 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zebre, Josh Bauer</title>
+  <title>Zebre Technologies, Josh Bauer</title>
   <meta name="description" content="Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I&#x27;m now designing their customer portal and the design-system rules behind it.">
+  <meta name="theme-color" content="#012169">
   <link rel="icon" href="../images/JB%2032.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,400..600,50;1,9..144,400..600,50&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
-  <header class="site-head">
-    <div class="wrap">
-      <a class="mark" href="../"><img src="../images/JB%2032.png" alt="" width="30" height="30">Josh Bauer</a>
-      <nav aria-label="Main">
-        <a href="../work.html" aria-current="page">Work</a>
-        <a href="https://www.linkedin.com/newsletters/simple-by-design-7282829164515082242/" class="hide-sm">Newsletter</a>
-        <a href="https://drive.google.com/file/d/1rYCA_m81w_5Ka5aTueV_GPyAQTehJPNs/view?usp=sharing">Resume</a>
-        <a href="../index.html#contact">Contact</a>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="wide">
+      <a class="mark" href=".././"><img src="../images/JB%2032.png" alt="" width="30" height="30">Josh Bauer</a>
+      <nav class="nav" aria-label="Main">
+        <a href="../#work" class="hide-sm">Work</a>
+        <a href="../#opinions" class="opt">Opinions</a>
+        <a href="../#faq" class="opt">FAQ</a>
+        <span class="view" role="group" aria-label="View"><a href=".././" aria-current="page" title="This page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z"/><path d="M6.5 8h4M6.5 10.5h4"/></svg>Site</a><a href="../canvas/#zebre" title="See this portfolio as a design file"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Canvas</a></span>
+        <a class="btn sm hide-sm" href="../#hire">Say hello</a>
       </nav>
     </div>
   </header>
-  <main>
-    <div class="wrap">
-      <section class="cs-head">
-        <a class="back" href="../work.html">Back to all work</a>
-        <h1>A portal built on rules, not one-offs</h1>
-        <p class="lede">Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I'm now designing their customer portal and the design-system rules behind it.</p>
-        <dl class="cs-meta">
-          <div><dt>Client</dt><dd>Zebre Technologies</dd></div>
-          <div><dt>My role</dt><dd>Product designer</dd></div>
-          <div><dt>Team</dt><dd>Rev3 Labs</dd></div>
-          <div><dt>Status</dt><dd>In progress</dd></div>
-        </dl>
-      </section>
-      <section class="cs-body">
-        <div class="pic"><img src="../images/work/medical-imaging-storage-analyzer-showcase.png" alt="Zebre analytics dashboard screens showing storage totals, file counts and estimated savings" width="636" height="477"></div>
-        <div class="prose">
+
+  <main id="main" style="--tint: #e8edf8">
+    <section class="cs-top">
+      <div class="col">
+        <a class="back" href="../#work">All the work</a>
+        <p class="who">Zebre Technologies</p>
+        <h1 style="view-transition-name: t-zebre">A portal built on rules, not one-offs</h1>
+        <p class="lead">Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I'm now designing their customer portal and the design-system rules behind it.</p>
+        <ul class="facts"><li><b>My role:</b> Product designer</li><li><b>Team:</b> Rev3 Labs</li><li><b>Status:</b> In progress</li></ul>
+      </div>
+    </section>
+    <div class="col">
+      <figure class="frame cs-hero"><img style="view-transition-name: i-zebre" src="../images/work/medical-imaging-storage-analyzer-showcase.png" alt="Zebre analytics dashboard screens showing storage totals, file counts and estimated savings" width="636" height="477"></figure>
+      <div class="prose">
 <h2>The problem</h2>
 <p>Large imaging archives are mostly non-diagnostic data, up to 75% of it. That drives up storage costs, slows transfers, and makes it hard to prepare imaging for cloud migration or AI pipelines. IT leaders had no clear view of where the waste was.</p>
 <div class="stat"><div><b>75%</b><span>of archive data can be non-diagnostic</span></div><div><b>HIPAA</b><span>compliant scanner and cloud API</span></div><div><b>AA</b><span>WCAG target for the portal</span></div></div>
@@ -58,14 +57,19 @@
 <li><strong>No patient data.</strong> Designs and demo content never show protected health information: no patient names, record numbers, accession numbers or study dates.</li>
 </ul>
 <p>I also built Zebre's marketing site in Webflow and set up cookie consent so tracking only runs after a visitor agrees.</p>
-        </div>
-        <nav class="next" aria-label="More work">
-          <a href="../work.html">All work</a>
-          <a href="publishright.html">Next: PublishRight</a>
-        </nav>
-      </section>
+      </div>
+      <nav class="next" aria-label="Next project">
+        <p>Up next</p>
+        <a href="publishright.html">An AI proofreader, from brand to product</a>
+      </nav>
     </div>
   </main>
-  <footer class="foot"><div class="wrap">Josh Bauer, Pittsburgh. Partner at <a href="https://rev3labs.com">Rev3 Labs</a>.</div></footer>
+  <footer class="foot">
+    <div class="wide">
+      <span>Josh Bauer, Pittsburgh. Partner at <a href="https://rev3labs.com">Rev3 Labs</a>. <a href="../Josh-Bauer-Resume.pdf">Resume</a></span>
+      <span>Curious how this page is put together? <button id="inspectBtn" aria-pressed="false">Inspect it</button> or press <kbd>I</kbd>.</span>
+    </div>
+  </footer>
+  <script src="../assets/site.js" defer></script>
 </body>
 </html>

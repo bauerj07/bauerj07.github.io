@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Zebre Technologies, Josh Bauer</title>
-  <meta name="description" content="Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I&#x27;m now designing their customer portal and the design-system rules behind it.">
+  <title>Medical imaging portal, Josh Bauer</title>
+  <meta name="description" content="This healthcare startup helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I&#x27;m now designing their customer portal and the design-system rules behind it.">
   <meta name="theme-color" content="#012169">
   <link rel="icon" href="../images/JB%2032.png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         <a href="../#opinions" class="opt">Opinions</a>
         <a href="../#faq" class="opt">FAQ</a>
         <span class="view" role="group" aria-label="View"><a href=".././" aria-current="page" title="This page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z"/><path d="M6.5 8h4M6.5 10.5h4"/></svg>Site</a><a href="../canvas/#zebre" title="See this portfolio as a design file"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Canvas</a></span>
-        <a class="btn sm hide-sm" href="../#hire">Say hello</a>
+        <a class="btn sm" href="../#hire">Say hello</a>
       </nav>
     </div>
   </header>
@@ -29,38 +29,47 @@
     <section class="cs-top">
       <div class="col">
         <a class="back" href="../#work">All the work</a>
-        <p class="who">Zebre Technologies</p>
-        <h1 style="view-transition-name: t-zebre">A portal built on rules, not one-offs</h1>
-        <p class="lead">Zebre helps hospitals find and clear the non-diagnostic data clogging their medical imaging archives. I designed the analytics dashboard, and I'm now designing their customer portal and the design-system rules behind it.</p>
-        <ul class="facts"><li><b>My role:</b> Product designer</li><li><b>Team:</b> Rev3 Labs</li><li><b>Status:</b> In progress</li></ul>
+        <p class="who">Healthcare imaging</p>
+        <h1 style="view-transition-name: t-zebre">Making the savings obvious in one look</h1>
+        <p class="lead">A healthcare startup had technology that finds wasted space in hospital imaging archives, but no product around it: some early branding, no website, no interface. I designed the brand direction, the marketing site and the beta analytics product from a blank page, so a short trial scan turns into a clear answer: here's the storage you can free up, and here's what it's worth.</p>
+        <ul class="facts"><li><b>My role:</b> Product designer, sole designer</li><li><b>Team:</b> Rev3 Labs</li><li><b>Status:</b> Beta, in trials</li></ul>
       </div>
     </section>
     <div class="col">
-      <figure class="frame cs-hero"><img style="view-transition-name: i-zebre" src="../images/work/medical-imaging-storage-analyzer-showcase.png" alt="Zebre analytics dashboard screens showing storage totals, file counts and estimated savings" width="636" height="477"></figure>
+      <figure class="frame cs-hero"><img style="view-transition-name: i-zebre" src="../images/work/healthcare-overview.jpg" alt="Overview screen: total storage, estimated savings from the customer's rules as a percentage and in dollars, and savings so far" width="790" height="422"></figure>
       <div class="prose">
 <h2>The problem</h2>
-<p>Large imaging archives are mostly non-diagnostic data, up to 75% of it. That drives up storage costs, slows transfers, and makes it hard to prepare imaging for cloud migration or AI pipelines. IT leaders had no clear view of where the waste was.</p>
-<div class="stat"><div><b>75%</b><span>of archive data can be non-diagnostic</span></div><div><b>HIPAA</b><span>compliant scanner and cloud API</span></div><div><b>AA</b><span>WCAG target for the portal</span></div></div>
-<h2>The analyzer</h2>
-<p>Rev3 ran stakeholder interviews, mapped the constraints, and validated the concept with a Figma prototype before building. I designed the responsive dashboard that shows storage savings and optimization recommendations, backed by a Windows scanner and cloud API built in Angular, .NET and Azure.</p>
-<h2>The portal</h2>
-<p>Zebre's existing app had drifted: similar screens looked and behaved differently. The new customer portal is a fresh build, so I'm using it to stop that drift from carrying over.</p>
-<ul>
-<li>Design-system guidelines and rules for the new platform, written so legacy inconsistencies get caught and resolved in the rebuild instead of copied.</li>
-<li>A login for existing paying customers: a full-bleed green layout with a logomark watermark, with a centered-card version kept as a backup for the team to compare.</li>
-<li>Products that can be turned on or off per customer, so the portal fits whatever each account has.</li>
-<li>Working personas, reviewed with Zebre's CEO before being used as the design's north star.</li>
-</ul>
+<p>Hospitals keep enormous imaging archives, and a lot of what's in them doesn't need to be there. Some studies are past the point they have to be kept. Others could be stored far more efficiently. The startup's patented technology can find both, but a scan result is just data. To win a customer, it has to become a number a buyer believes.</p>
+<p>It's a high-touch sale, and the CEO is the sales team. He asks a hospital for a simple trial: let the scanner run on a sample of stored images, then see what it finds. The product had to make that conversation easy.</p>
+<div class="stat"><div><b>0 to 1</b><span>brand direction, marketing site and product</span></div><div><b>Beta</b><span>in trials with prospective hospital customers</span></div><div><b>AA</b><span>WCAG target, and never any patient data</span></div></div>
+<h2>Who it's for</h2>
+<p>The people using it are hospital IT administrators. They know PACS systems, DICOM images and storage inside out, and they're used to dense, data-heavy enterprise tools.</p>
+<p>That could have been an excuse to build another dense enterprise tool. I went the other way. Being comfortable with complexity doesn't mean wanting more of it, and a startup asking for a trial can't afford to look confusing. The product needed to be simple enough that the CEO could open it in a meeting and the value would be obvious before he said a word.</p>
+<h2>Starting from a blank page</h2>
+<p>I started with the founder: what the company does, who it sells to, and how it wants to sound. From there I explored brand and layout directions in Figma, showed variations, and iterated until the direction felt right. That work became the marketing site first, then the product.</p>
+<figure class="frame"><img src="../images/work/healthcare-marketing-site.jpg" alt="The marketing site's home page, with a hand-drawn illustration of DICOM files moving from a crowded server to a lighter one" width="800" height="490" loading="lazy"></figure>
+<h2>Three decisions that shaped it</h2>
+<h3>Lead with the answer</h3>
+<p>After a scan, the first thing on screen is two numbers, big and clear: the share of storage you can free up, and what that's worth in dollars. Everything else comes after. A buyer's first question is "is this worth my time?", and the screen answers it straight away.</p>
+<h3>Then show where the numbers come from</h3>
+<p>A big number on its own invites doubt, especially from technical buyers. So right under the headline, the product breaks the savings down: by kind of action, like studies that have expired and no longer need to be kept or images that can be optimized to take less space, and by modality, so they can see which parts of their archive drive the cost. The CEO can walk a prospect from "here's what you could save" to "here's exactly where it comes from," and the buyer can check the math.</p>
+<figure class="frame"><img src="../images/work/healthcare-breakdown.jpg" alt="Savings by action as a patterned donut chart, next to the top rules ranked by savings with estimated and saved-so-far bars" width="620" height="372" loading="lazy"></figure>
+<p><b>The trade-off.</b> A scan holds far more data than this shows. I kept the breakdown to what supports the decision and left deeper analysis for later, so the story stays clear in a sales meeting.</p>
+<h3>No patient data, anywhere</h3>
+<p>The scanner reads storage information, not patient information, and the design holds the same line. Nothing in the product, the demos or the design files shows patient names, record numbers, accession numbers or study dates. In a sale that runs on trust, that has to be obvious.</p>
 <h2>Designing for healthcare</h2>
 <ul>
-<li><strong>Accessibility.</strong> The target is WCAG AA. Color blindness has come up with some of Zebre's customers, so status and meaning never rely on color alone.</li>
-<li><strong>No patient data.</strong> Designs and demo content never show protected health information: no patient names, record numbers, accession numbers or study dates.</li>
+<li><b>Accessibility.</b> The target is WCAG AA. Color blindness has come up with prospective customers, so status and meaning never rely on color alone. Charts use patterns as well as color, and every number is written out.</li>
+<li><b>Rules before screens.</b> As the product grows, I'm writing design-system rules alongside it, so new screens start consistent instead of being cleaned up later.</li>
 </ul>
-<p>I also built Zebre's marketing site in Webflow and set up cookie consent so tracking only runs after a visitor agrees.</p>
+<h2>What's next</h2>
+<p>The first product shows what you could save. The second, now in design, lets you actually do it. Customers build their own rules for acting on what the scan found: by image type, by modality, by location, by age. Layer them up, and the service carries out the optimization.</p>
+<p>That changes the main screen too. It will show estimated savings next to actual savings, and the gap between them: what's still available based on the rules a hospital hasn't put in place yet. The number that sold the trial becomes the number they watch shrink.</p>
+<p class="aside">The marketing site is built in Webflow, with cookie consent so tracking only runs after a visitor agrees. The product runs on Angular, .NET and Azure.</p>
       </div>
       <nav class="next" aria-label="Next project">
         <p>Up next</p>
-        <a href="publishright.html">An AI proofreader, from brand to product</a>
+        <a href="publishright.html">An AI proofreader that keeps editors in charge</a>
       </nav>
     </div>
   </main>

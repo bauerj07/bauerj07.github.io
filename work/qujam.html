@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Qujam, Josh Bauer</title>
-  <meta name="description" content="Qujam lets small businesses and agencies build location-targeted ad campaigns themselves, across display, streaming video, pre-roll and audio. Since September 2025 Rev3 has been Qujam&#x27;s design and engineering team, and I lead the design. Payment volume grew 79% over the period.">
+  <title>Geofencing ad platform, Josh Bauer</title>
+  <meta name="description" content="The platform lets small businesses and agencies build location-targeted ad campaigns themselves, across display, streaming video, pre-roll and audio. Since September 2025 Rev3 has been the platform&#x27;s design and engineering team, and I lead the design. Payment volume grew 79% over the period.">
   <meta name="theme-color" content="#012169">
   <link rel="icon" href="../images/JB%2032.png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         <a href="../#opinions" class="opt">Opinions</a>
         <a href="../#faq" class="opt">FAQ</a>
         <span class="view" role="group" aria-label="View"><a href=".././" aria-current="page" title="This page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z"/><path d="M6.5 8h4M6.5 10.5h4"/></svg>Site</a><a href="../canvas/#qujam" title="See this portfolio as a design file"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Canvas</a></span>
-        <a class="btn sm hide-sm" href="../#hire">Say hello</a>
+        <a class="btn sm" href="../#hire">Say hello</a>
       </nav>
     </div>
   </header>
@@ -29,44 +29,72 @@
     <section class="cs-top">
       <div class="col">
         <a class="back" href="../#work">All the work</a>
-        <p class="who">Qujam</p>
-        <h1 style="view-transition-name: t-qujam">Growing a self-serve geofencing ad platform</h1>
-        <p class="lead">Qujam lets small businesses and agencies build location-targeted ad campaigns themselves, across display, streaming video, pre-roll and audio. Since September 2025 Rev3 has been Qujam's design and engineering team, and I lead the design. Payment volume grew 79% over the period.</p>
-        <ul class="facts"><li><b>My role:</b> Design lead, partner</li><li><b>Team:</b> Rev3 Labs</li><li><b>Status:</b> Live, ongoing</li></ul>
+        <p class="who">Ad tech</p>
+        <h1 style="view-transition-name: t-qujam">Making a self-serve ad platform feel simple</h1>
+        <p class="lead">A self-serve platform where small businesses and agencies run location-targeted ads across display, streaming video, pre-roll and audio. Rev3 took over design and development in September 2025. I rebuilt campaign setup so each step asks one thing at a time, and helped turn a new targeting idea into the platform's most successful feature. Payment volume grew 79% over the next thirteen months.</p>
+        <ul class="facts"><li><b>My role:</b> Product designer, sole designer</li><li><b>Team:</b> Rev3 Labs</li><li><b>Status:</b> Live, ongoing</li></ul>
       </div>
     </section>
     <div class="col">
-      <figure class="frame cs-hero"><img style="view-transition-name: i-qujam" src="../images/work/qujam-login.jpg" alt="Qujam sign-in screen with the tagline Hyperlocal ads for all" width="800" height="600"></figure>
+      <figure class="frame cs-hero"><img style="view-transition-name: i-qujam" src="../images/work/qujam-hypergrid.jpg" alt="Hyper-Grid: half-mile grid cells selected on a map of downtown Pittsburgh" width="598" height="298"></figure>
       <div class="prose">
 <h2>The problem</h2>
-<p>To keep growing, Qujam needed more ways to target and buy. The multi-step campaign builder needed to be clearer and easier to finish. And the live product had to keep running for paying advertisers the whole time we were changing it.</p>
-<div class="stat"><div><b>79%</b><span>growth in gross payment volume</span></div><div><b>730</b><span>new paying customers, up 39%</span></div><div><b>3.2x</b><span>campaigns delivering per day</span></div></div>
-<h2>Hyper-Grid geofencing</h2>
-<p>The biggest thing we shipped. Geofencing usually means wrestling with coordinates or drawing shapes by hand. Hyper-Grid lets an advertiser click pre-defined half-mile grid cells on a map instead. Address search jumps to a spot without losing the grid, a counter tracks what's selected, and first-time users get a short tip and a walkthrough. It sits alongside Precision geofencing's custom shapes, and the two are explained side by side in plain language before anyone commits.</p>
-<figure class="frame"><img src="../images/work/qujam-geofencing-mode.jpg" alt="Campaign type step: Precision or Hyper-Grid geofencing, and Addressable, Drawn Geofence or Event targeting" width="800" height="500"></figure>
-<h2>A clearer path to launch</h2>
-<p>I redesigned the campaign builder from the ground up around Hyper-Grid, as a seven-step walk: name it, pick the mode and target type, define locations, set reach, upload creative, set the flight and budget, review. Each step locks the choices that depend on it, so nobody ends up with a video ad on a display campaign or a map with no place on it. Along the way:</p>
+<p>The goal is simple to say: let a small business owner set up and run a geofence ad campaign on their own. The product didn't feel that simple. Screens were wordy, and each page asked for everything at once. Someone new to ad buying didn't know where to start, and a mistake early on might not surface until the end.</p>
+<p>The business also runs lean. Every design and development hour has to earn its place, and live campaigns are real money. If one runs wrong or doesn't run at all, that's revenue that never reaches the platform. Every change had to ship without disrupting anyone.</p>
+<div class="stat"><div><b>79%</b><span>growth in gross payment volume</span></div><div><b>39%</b><span>more paying customers</span></div><div><b>3.2x</b><span>campaigns delivering per day</span></div></div>
+<h2>What I looked at</h2>
+<p>Before changing anything, I worked out who uses it, how campaigns actually get built, and what the business needs the platform to do. Two things stood out.</p>
 <ul>
-<li>Budgets with live estimates. Spend, CPM, impressions and clicks update as the number changes.</li>
-<li>Partner audience segments as an optional step. Anyone who doesn't need them skips it.</li>
-<li>Conversion tracking with a numbered setup for page-visit and button-click goals, shown only when a campaign needs it.</li>
-<li>Redesigned campaign cards and a guided setup wizard.</li>
+<li><b>Everything was visible all the time.</b> Most of the confusion came from showing every option before the user had made the choices that decide which options matter.</li>
+<li><b>Mistakes were easy to make and hard to fix.</b> Choices that depend on each other weren't connected, so it was possible to set up a campaign that couldn't run.</li>
 </ul>
-<figure class="frame"><img src="../images/work/qujam-campaign-setup.jpg" alt="Campaign setup step: organization, campaign name and the four ad types, Display, Streaming Video, Internet Video and Digital Audio" width="800" height="500"></figure>
-<h2>What shipped, in order</h2>
+<h2>Three decisions that shaped it</h2>
+<h3>Show the next question only when it matters</h3>
+<p>The old first page asked for the ad type, how to target, and the campaign's goals all at once. I split it apart. Step one is just a name and an ad type. Step two asks for a targeting mode, and only once you've picked one does it show the target types that work with it, along with a short note on what that mode unlocks later.</p>
+<div class="ba">
+<figure class="was"><img src="../images/work/qujam-old-targets.jpg" alt="Before: targeting method and a list of campaign goals on one long page" width="602" height="672" loading="lazy"><figcaption>Before: targeting and goals on one page</figcaption></figure>
+<figure><img src="../images/work/qujam-new-type.jpg" alt="After: choosing Hyper-Grid reveals a note about what it unlocks and only the target types that work with it" width="800" height="490" loading="lazy"><figcaption>After: pick a mode, then see what fits it</figcaption></figure>
+</div>
+<p>The builder became seven short steps: set up the campaign, choose the type, set locations, reach and conversions, upload ads, flight and budget, review. Each step locks the choices that depend on it, so nobody ends up with a video ad on a display campaign. Budgets show live estimates for spend, CPM, impressions and clicks as you type, and conversion tracking only appears when a campaign needs it.</p>
+<p><b>The trade-off.</b> More steps means more clicks. I took that trade, because each click asks for one thing the user can answer confidently, and mistakes get caught where they happen instead of at the end.</p>
+<h3>Turn a regulatory problem into a simpler way to target</h3>
+<p>Some states started limiting how precisely ads can be matched to a location. The CEO had an idea for a grid-based approach, and I worked with him as a thought partner on how it could work technically and how it should feel to use.</p>
+<p>Standard geofencing means drawing shapes point by point on a map: precise, but fiddly and intimidating. Hyper-Grid lets an advertiser click pre-defined half-mile cells instead. Search an address and the map jumps there without losing the grid, a counter shows what's selected, and first-timers get a short tip and a walkthrough.</p>
+<div class="ba stack">
+<figure class="was"><img src="../images/work/qujam-old-draw.jpg" alt="Before: drawing a geofence polygon point by point on a map" width="952" height="702" loading="lazy"><figcaption>Before: draw every shape by hand</figcaption></figure>
+<figure><img src="../images/work/qujam-hypergrid.jpg" alt="After: half-mile Hyper-Grid cells selected over downtown Pittsburgh" width="598" height="298" loading="lazy"><figcaption>After: click the cells you want</figcaption></figure>
+</div>
+<p><b>The trade-off.</b> A grid cell is less exact than a hand-drawn shape. So Precision geofencing stays available, and the two are explained side by side in plain language before anyone commits.</p>
+<h3>Ship in the order the business could afford</h3>
+<p>With a lean budget, sequencing mattered as much as design. We shipped what added revenue soonest, and saved the big rebuild for once that was steady. Every release went through QA before deploy, so live campaigns kept running throughout.</p>
 <ol class="steps">
 <li><b>Dec 2025.</b> Digital audio ads, a new channel for podcast, music-streaming and radio-app audiences.</li>
 <li><b>Jan 2026.</b> Event geofencing: reach people at an event, then retarget them for up to 30 days after.</li>
-<li><b>Apr to Sep 2026.</b> The rebuilt campaign flow: budget UX, the setup wizard, new campaign cards.</li>
+<li><b>Apr to Sep 2026.</b> The rebuilt campaign flow, budget experience and campaign cards.</li>
 <li><b>Jul to Oct 2026.</b> Hyper-Grid, partner audiences and conversion tracking.</li>
 </ol>
 <h2>What happened</h2>
-<p>Comparing the thirteen months since Rev3 joined with the thirteen before: gross payment volume up 79%, 730 new paying customers (up 39%), 67% more advertisers spending on a typical day, and 3.2x as many campaigns delivering per day. More than 320 commits to production, and the platform never went down for it.</p>
-<p class="aside">Vue.js on AWS with Stripe billing and a programmatic DSP integration. We also reviewed federal and state geofencing rules so the feature stays on the right side of privacy regulation.</p>
+<p>Comparing the thirteen months since Rev3 took over with the thirteen before:</p>
+<ul>
+<li><b>79%</b> growth in gross payment volume.</li>
+<li><b>730</b> new paying customers, up 39%.</li>
+<li><b>67%</b> more advertisers spending on a typical day.</li>
+<li><b>3.2x</b> as many campaigns delivering per day.</li>
+</ul>
+<p>Not all of that is design. The business stepped up its marketing over the same stretch, and the platform was maturing on its own. But more advertisers launching more campaigns by themselves is exactly what less friction should produce, and Hyper-Grid has been the most successful feature we've shipped.</p>
+<h2>How I worked</h2>
+<p>The CEO made the final calls. My job was to be the sounding board: bring options, say what was feasible and what it would cost, and push back when a request would make the product harder to use.</p>
+<h2>What I'd do with more time</h2>
+<p>With a lean budget you pick your battles, and a few are still on my list.</p>
+<ul>
+<li><b>Take step-by-step further.</b> The upload step could hold back the creative uploader until there's a landing page URL, the same way earlier steps reveal what comes next. The catch: some advertisers have their ads ready before the landing page exists and just want a draft in place. Requiring the URL first would block them. Do we let them keep going without it? It's a small screen, but it's exactly the kind of trade-off this product is full of.</li>
+<li><b>Harden the sync behind the scenes.</b> Every campaign touches two outside systems, and campaign status, delivery and billing have to agree across all of them. It's improved steadily, but I want background jobs that keep everything in sync automatically, so the numbers advertisers see and the amounts they're billed are always right.</li>
+</ul>
+<p class="aside">Vue.js on AWS, with Stripe billing and a programmatic DSP integration.</p>
       </div>
       <nav class="next" aria-label="Next project">
         <p>Up next</p>
-        <a href="zebre.html">A portal built on rules, not one-offs</a>
+        <a href="zebre.html">Making the savings obvious in one look</a>
       </nav>
     </div>
   </main>

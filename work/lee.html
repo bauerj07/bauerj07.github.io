@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lee Company, Josh Bauer</title>
-  <meta name="description" content="Lee Company does HVAC, plumbing, electrical and appliance repair for homeowners, all on Microsoft Dynamics 365 Field Service. I designed their customer self-scheduling experience, and paid jobs through it ran at more than four times the old booking channel.">
+  <title>Home services self-scheduling, Josh Bauer</title>
+  <meta name="description" content="A home services company's online booking asked for a name, email, phone number and address before showing whether anyone could come out. I redesigned it so homeowners see real appointment times by the third screen. Paid jobs through the new flow ran at 4.7 times the old channel's typical year.">
   <meta name="theme-color" content="#012169">
   <link rel="icon" href="../images/JB%2032.png">
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400..900&family=Caveat:wght@500..700&display=swap" rel="stylesheet">
@@ -20,7 +20,7 @@
         <a href="../#opinions" class="opt">Opinions</a>
         <a href="../#faq" class="opt">FAQ</a>
         <span class="view" role="group" aria-label="View"><a href=".././" aria-current="page" title="This page"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 1.5h5.5L12.5 4.5v10h-8.5z"/><path d="M6.5 8h4M6.5 10.5h4"/></svg>Site</a><a href="../canvas/#lee" title="See this portfolio as a design file"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M5 1v14M11 1v14M1 5h14M1 11h14"/></svg>Canvas</a></span>
-        <a class="btn sm hide-sm" href="../#hire">Say hello</a>
+        <a class="btn sm" href="../#hire">Say hello</a>
       </nav>
     </div>
   </header>
@@ -29,41 +29,72 @@
     <section class="cs-top">
       <div class="col">
         <a class="back" href="../#work">All the work</a>
-        <p class="who">Lee Company</p>
-        <h1 style="view-transition-name: t-lee">Turning online booking into a growth channel</h1>
-        <p class="lead">Lee Company does HVAC, plumbing, electrical and appliance repair for homeowners, all on Microsoft Dynamics 365 Field Service. I designed their customer self-scheduling experience, and paid jobs through it ran at more than four times the old booking channel.</p>
-        <ul class="facts"><li><b>My role:</b> Design lead, partner</li><li><b>Team:</b> Rev3 Labs</li><li><b>Status:</b> Live</li></ul>
+        <p class="who">Home services</p>
+        <h1 style="view-transition-name: t-lee">Show availability before asking for anything</h1>
+        <p class="lead">A home services company's online booking asked for a name, email, phone number and address before showing whether anyone could come out. I redesigned it so homeowners see real appointment times by the third screen. Paid jobs through the new flow ran at 4.7 times the old channel's typical year.</p>
+        <ul class="facts"><li><b>My role:</b> Product designer, sole designer</li><li><b>Team:</b> Rev3 Labs</li><li><b>Status:</b> Live</li></ul>
       </div>
     </section>
     <div class="col">
-      <figure class="frame cs-hero"><img style="view-transition-name: i-lee" src="../images/work/lee-3-schedule.png" alt="Lee Company's live scheduling screen showing the first available arrival windows, with the chosen window played back" width="340" height="396"></figure>
       <div class="prose">
 <h2>The problem</h2>
-<p>Lee's old booking channel worked, but it had plateaued. Volume was flat year over year. The flow was several steps long and didn't show availability until the end, so about 80% of people dropped off before they ever saw an open appointment. Customers couldn't cancel, reschedule or check a plan balance on their own, so dispatch and the call center handled it by hand. And the whole thing lived inside a third-party widget that blocked anything we might want to build next.</p>
-<p>Lee wanted customers to book on their own time without adding work for the team behind the scenes.</p>
-<div class="stat"><div><b>4.7x</b><span>more paid jobs per year than the old channel</span></div><div><b>4x</b><span>the channel revenue of the old channel's typical year</span></div><div><b>10x</b><span>growth in maintenance bookings as customers self-serve planned work</span></div></div>
-<h2>One decision per screen</h2>
-<p>After stakeholder interviews, data analysis and lifecycle mapping, I designed the flow as a short series of single decisions, so a customer gets from "something's wrong" to a confirmed appointment without ever facing a form.</p>
+<p>Nobody books an HVAC or plumbing visit for fun. Something's broken, and the first question is "can you come, and when?"</p>
+<p>The company's online booking ran through a third-party widget that made customers earn that answer. It took several screens of personal details before showing a single open slot. People have learned that handing over an email and phone number means a steady stream of marketing, so many left before they ever saw availability. Bookings through the channel had been flat for two years.</p>
+<div class="stat"><div><b>4.7x</b><span>paid jobs compared with the old channel's typical year</span></div><div><b>4x</b><span>paid revenue through the channel</span></div><div><b>2&ndash;3x</b><span>better conversion than asking for contact details first</span></div></div>
+<h2>What I looked at</h2>
+<p>I audited the old tool step by step: what it asked for, in what order, and what the customer got back at each point. Two findings shaped everything after.</p>
+<ul>
+<li><b>Customers wanted an answer, not a form.</b> Only two things decide whether a visit can happen: where you are and what's wrong. Everything else could wait.</li>
+<li><b>Contact details up front felt like a trap.</b> Asking for them first said "we want to sell to you" before "we can help you."</li>
+</ul>
+<h2>Three decisions that shaped it</h2>
+<h3>Ask for an address, not an identity</h3>
+<p><b>The tension.</b> Marketing wanted name, email and phone on the first step, so anyone who dropped off could still be followed up with. That's a fair business goal.</p>
+<p><b>What we did.</b> Rather than argue it, we tested it. Version B asked for name, email, phone and address up front. Version A, my recommendation, asked only for the address so we could confirm the company serves the area. Version A converted two to three times better.</p>
+<p><b>The trade-off.</b> We gave up contact details from people who leave partway through. To win some of that back honestly, anyone outside the service area can opt in to hear when service expands to them. Nobody spends five steps finding out we can't come.</p>
+<h3>Let people describe the problem in their own words</h3>
+<p>Customers don't know the company's service categories, and they shouldn't have to. They type what's wrong, or tap a quick pick drawn from the most common requests that month. An AI model maps what they wrote to the right service line, so the times they see come from technicians who can actually do that job in their area.</p>
+<p><b>Designing for when the AI misses.</b> The model won't always find a match, and that should never block a booking. If it can't place the request, the screen first helps the customer rephrase. If that still doesn't work, they can pick a category themselves and keep going. The AI makes the flow faster, but nothing depends on it being right.</p>
+<h3>Real times on the third screen</h3>
+<p>With a location and a problem, the system can show actual arrival windows, plus an ASAP option for urgent jobs. By step three the customer knows whether anyone can come when they need it, before they go check a competitor. Name, email and phone come after they've picked a time.</p>
 <ol class="steps">
-<li><b>Start with one easy question.</b> Is this for a home or a business? That's the whole first screen.</li>
-<li><b>Describe the problem in your own words.</b> Customers type what's wrong, or tap one of the common issues for this time of year in their area. Behind the scenes, an LLM with retrieval over Lee's service catalog clarifies the issue and picks the right kind of technician, so the customer never has to know which trade to ask for.</li>
-<li><b>Make choosing a time the easy part.</b> First available slots up front, a calendar if you'd rather browse, clear arrival windows, and an "ASAP" option. The chosen window is played back before you continue.</li>
-<li><b>Close the loop.</b> A summary with a reference number, then an email and reminders before the visit. Every booking lands in Dynamics as a work order, ready to dispatch.</li>
+<li><b>Home or business.</b> One question. This flow is for homes, so a business gets sent to the commercial team.</li>
+<li><b>Where are you?</b> Just the address, to confirm the company serves the area.</li>
+<li><b>What's wrong?</b> Free text or a quick pick, sorted into the right service line behind the scenes.</li>
+<li><b>Pick a time.</b> First available arrival windows, a calendar to browse, or ASAP. The chosen window is played back before you continue.</li>
+<li><b>Tell us who you are, then you're booked.</b> Contact details last, then a summary with a reference number, email and reminders. Every booking lands in Dynamics 365 Field Service as a work order, so dispatch has nothing extra to do.</li>
 </ol>
 <div class="phones">
-<figure><img src="../images/work/lee-1-start.png" alt="Start screen asking whether the visit is for a home or a business" width="340" height="396"><figcaption>1. Home or business</figcaption></figure>
-<figure><img src="../images/work/lee-2-details.png" alt="Service details screen with a free-text issue description and suggested common issues for the season" width="340" height="396"><figcaption>2. Describe the problem</figcaption></figure>
-<figure><img src="../images/work/lee-3-schedule.png" alt="Schedule screen with first available arrival windows and the chosen window played back" width="340" height="396"><figcaption>3. Pick a time</figcaption></figure>
-<figure><img src="../images/work/lee-4-confirmed.png" alt="Confirmation screen with the appointment summary and a reference number" width="340" height="396"><figcaption>4. Confirmed</figcaption></figure>
+<figure><img src="../images/work/lee-1-start.png" alt="Start screen asking whether the visit is for a home or a business" width="340" height="396"><figcaption>Home or business</figcaption></figure>
+<figure><img src="../images/work/lee-2-details.png" alt="Service details screen with a free-text issue description and quick picks for common issues this time of year" width="340" height="396"><figcaption>What's wrong</figcaption></figure>
+<figure><img style="view-transition-name: i-lee" src="../images/work/lee-3-schedule.png" alt="Schedule screen with first available arrival windows and the chosen window played back" width="340" height="396"><figcaption>Pick a time</figcaption></figure>
+<figure><img src="../images/work/lee-4-confirmed.png" alt="Confirmation screen with the appointment summary and a reference number" width="340" height="396"><figcaption>Booked</figcaption></figure>
 </div>
+<h2>Measuring it</h2>
+<p>We watched the flow in PostHog after launch. The clearest lesson was about dead ends. When the AI couldn't place a request, the worst possible answer was "we don't offer that," because it turns a possible job into a lost one. We tuned the categorization and changed those moments to say "we're not sure what you need, here's how to reach us," with a phone number and email. Every request now has a path to a person.</p>
+<p>For the business case, I compared paid work orders from January through July 2026 with the same months of 2024 and 2025, the last two years on the old tool. I averaged both years because one felt like too small a sample, held the service categories constant, and counted only paid orders.</p>
 <h2>What happened</h2>
-<p>Comparing January through July 2026 with the same window in the two prior years, self-scheduling grew across every high-volume service line. Cooling maintenance ran at 13.6x the old channel, plumbing maintenance at 10x, and HVAC, electrical and plumbing service calls each around 4x. Paid job volume more than quadrupled after two years of flat volume, and average job value stayed in the same range as before, so the growth was real volume, not cheaper jobs.</p>
-<p>I wrote the SQL against Lee's Field Service data to get those numbers, comparing self-scheduled jobs with jobs booked the usual way on both adoption and revenue, so Lee had something better than a hunch about whether it was paying off.</p>
+<ul>
+<li><b>4.7x</b> paid jobs compared with the old channel's typical year, after two flat years.</li>
+<li><b>4x</b> paid revenue through the channel.</li>
+<li><b>About 10x</b> maintenance bookings, led by cooling maintenance at 13.6x. Customers will book planned work themselves, not just emergencies.</li>
+<li><b>3.9x to 4.2x</b> growth in every core service call line: HVAC, plumbing and electrical.</li>
+</ul>
+<p>Revenue across those same categories stayed roughly flat company-wide, so the growth came from the new channel, not a rising tide.</p>
+<p>Average revenue per job came in about 14% under the two-year baseline, but within 2% of 2024; 2025 was the unusually high year. The likely reason is mix: customers now book routine service and maintenance themselves, while big installs still go through a sales rep.</p>
+<p>For a consulting client, that answers the question every client eventually asks. The project has paid for itself, and the channel is still growing.</p>
+<h2>How I worked</h2>
+<p>Three of us at Rev3 built it. On the client side I worked with business analysts, marketing and executives to understand what each of them needed from online booking, then pitched the design and the implementation path to all of them together. When marketing pushed back on asking for contact details later, we settled it with the A/B test instead of a debate.</p>
+<h2>What's next</h2>
+<ul>
+<li><b>Weather-aware quick picks.</b> The suggestions already come from what customers usually need that month. Local weather would sharpen them: heating problems ahead of a cold snap, electrical and AC work after summer storms and outages.</li>
+<li><b>A customer portal.</b> Today booking is a one-time visit. A place to log in, see past visits and requests, and pay would turn it into an ongoing relationship.</li>
+</ul>
 <p class="aside">Built on Dynamics 365 Field Service with Angular, Python, Azure and Azure AI Foundry.</p>
       </div>
       <nav class="next" aria-label="Next project">
         <p>Up next</p>
-        <a href="qujam.html">Growing a self-serve geofencing ad platform</a>
+        <a href="qujam.html">Making a self-serve ad platform feel simple</a>
       </nav>
     </div>
   </main>

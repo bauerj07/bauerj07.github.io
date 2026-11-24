@@ -228,10 +228,10 @@ a.frame:hover { transform: translate(-3px, -3px); box-shadow: 11px 11px 0 var(--
 @media (max-width: 640px) { .ba { grid-template-columns: 1fr; } }
 
 /* Career timeline */
-.tl { list-style: none; margin: 8px 0 0; padding: 0; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0 20px; position: relative; }
-.tl::before { content: ""; position: absolute; left: 0; right: 0; top: 46px; height: 3px; background: var(--navy); border-radius: 2px; }
+.tl { list-style: none; margin: 8px 0 0; padding: 0; width: min(1080px, 100vw - 2 * var(--gut)); position: relative; left: 50%; transform: translateX(-50%); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 0 20px; position: relative; }
+.tl::before { content: ""; position: absolute; left: 10px; right: calc((100% - 100px) / 6 - 10px); top: 46px; height: 3px; background: var(--navy); border-radius: 2px; }
 .tl li { position: relative; padding-top: 74px; }
-.tl li::before { content: ""; position: absolute; top: 37px; left: 0; width: 21px; height: 21px; box-sizing: border-box; border-radius: 50%; background: #fff; border: 3px solid var(--navy); }
+.tl li::before { content: ""; position: absolute; z-index: 1; top: 37px; left: 0; width: 21px; height: 21px; box-sizing: border-box; border-radius: 50%; background: #fff; border: 3px solid var(--navy); }
 .tl li.now::before { background: var(--navy); box-shadow: 0 0 0 6px var(--hi-soft), 0 0 0 9px var(--navy); }
 .tl .yr { position: absolute; top: 0; left: 0; font-family: var(--hand); font-size: 25px; line-height: 1; color: var(--jb); font-weight: 600; white-space: nowrap; }
 .tl h3 { margin: 0; font-size: 19px; line-height: 1.2; font-weight: 800; letter-spacing: -.01em; color: var(--navy); }
@@ -239,9 +239,9 @@ a.frame:hover { transform: translate(-3px, -3px); box-shadow: 11px 11px 0 var(--
 .tl p { margin: 0; font-size: 15px; line-height: 1.45; color: var(--ink); }
 .tl .edu h3 { font-size: 17px; }
 @media (max-width: 900px) {
-  .tl { grid-template-columns: 1fr; gap: 30px; }
+  .tl { grid-template-columns: 1fr; gap: 30px; width: auto; left: 0; transform: none; }
   .tl::before { display: none; }
-  .tl li:not(:last-child)::after { content: ""; position: absolute; left: 9px; top: 12px; bottom: -30px; width: 3px; background: var(--navy); }
+  .tl li:not(:last-child)::after { content: ""; position: absolute; left: 9px; top: 21px; bottom: -30px; width: 3px; background: var(--navy); }
   .tl li { padding: 0 0 0 44px; }
   .tl li::before { top: 2px; }
   .tl .yr { position: static; display: block; margin-bottom: 4px; }
